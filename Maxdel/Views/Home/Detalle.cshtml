@@ -1,0 +1,44 @@
+﻿<body>
+    <div class="container">
+        <form>
+            @foreach(var item in @ViewBag.Producto)
+            {
+                <div class="text-center">
+                    <div class="col-md-3">
+                        <img src="@item.UrlImagen" class="img-fluid" alt="Imagen Pizzería">
+                    </div>
+                </div>
+            }
+            <div class="mb-3">                
+                @foreach(var item in @ViewBag.Producto)
+                {                    
+                    <h1>@item.Nombre</h1>
+                    <p>@item.Descripcion</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label>Tamaño / Precio: </label>
+                <select class="form-select" name="TipoCuentaId" id="TipoCuentaId">
+                    <option value="">-- Seleccione un tamaño --</option>
+                    @foreach(var item in @ViewBag.Tamanios)
+                    {
+                        @foreach(var item2 in @ViewBag.Precios)
+                        {
+                            @if(@item2.IdTamaño == @item.Id)
+                            {
+                                <option value="@item.Id">@item.TamañoProducto -> @item2.precio</option>
+                            }
+                        }                        
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Cantidad: </label>
+                <input type="number"/>
+            </div>
+            <button class="btn btn-primary">Añadir a la Cesta</button>
+            <button class="btn btn-primary">Comprar</button>
+            <a href="/home/menu" class="btn btn-link">Atras</a>
+        </form >
+    </div>
+</body>

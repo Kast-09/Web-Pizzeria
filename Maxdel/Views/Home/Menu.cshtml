@@ -1,0 +1,19 @@
+﻿<body>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach(var item in ViewBag.ListaProductos)
+            {                
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="@item.UrlImagen" class="card-img-top" alt="Imagen Producto">
+                          <div class="card-body">
+                               <h5 class="card-title"><b>@item.Nombre</b></h5>
+                               <p class="card-text">@item.Descripcion</p>
+                               <a href="/home/Detalle?IdProducto=@item.Id" class="btn btn-primary">Ver Detalle</a>
+                          </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>

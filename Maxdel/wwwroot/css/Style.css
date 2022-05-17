@@ -1,0 +1,11 @@
+﻿body {
+    background-image: url("https://cdn.pixabay.com/photo/2020/03/21/02/26/pizza-4952508_960_720.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.carta {
+    display: inline-block;
+    align-content: center;
+}
