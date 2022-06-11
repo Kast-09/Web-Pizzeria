@@ -29,16 +29,16 @@ namespace MaxdelTest.Controllers
             Assert.IsNotNull(view);
         }
 
-        [Test]
-        public void CestaView()
-        {
-            var mockDetalleRepo = new Mock<IHomeRepositorio>();
-            mockDetalleRepo.Setup(o => o.ObtenerDetalleCesta(1)).Returns(new List<DetallePedido>());
+        //[Test]
+        //public void CestaView()
+        //{
+        //    var mockDetalleRepo = new Mock<IHomeRepositorio>();
+        //    mockDetalleRepo.Setup(o => o.ObtenerDetalleCesta(1)).Returns(new List<DetallePedido>());
 
-            var controller = new HomeController(null, mockDetalleRepo.Object);
-            var ResultadoC = controller.Cesta(1);
-            Assert.IsNotNull(ResultadoC);
-        }
+        //    var controller = new HomeController(null, mockDetalleRepo.Object);
+        //    var ResultadoC = controller.Cesta(1);
+        //    Assert.IsNotNull(ResultadoC);
+        //}
 
         [Test]
         public void AboutViewCase01()
@@ -51,14 +51,14 @@ namespace MaxdelTest.Controllers
             Assert.IsNotNull(view);
         }
 
-        [Test]
-        public void MenuViewCase01()
-        {
-            var mockController = new Mock<IHomeRepositorio>();
-            var controller = new HomeController(null, mockController.Object);
-            var view = controller.Menu() as ViewResult;
+        //[Test]
+        //public void MenuViewCase01()
+        //{
+        //    var mockController = new Mock<IHomeRepositorio>();
+        //    var controller = new HomeController(null, mockController.Object);
+        //    var view = controller.Menu() as ViewResult;
 
-            Assert.IsNotNull(view);
-        }
+        //    Assert.IsNotNull(view);
+        //}
     }
 }
