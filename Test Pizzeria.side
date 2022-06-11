@@ -1,0 +1,216 @@
+{
+  "id": "0f542849-0e14-465e-9496-d7e9b86274c2",
+  "version": "2.0",
+  "name": "Test Pizzeria",
+  "url": "https://localhost:7195",
+  "tests": [{
+    "id": "4b9216e0-9635-47b7-88d1-3b32d917453c",
+    "name": "Prueba Instagram",
+    "commands": [{
+      "id": "9d993b36-b709-4b9f-9478-b7f1a39832d6",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f441a1cc-8092-4679-b3fb-40eea8d315a7",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Nosotros",
+      "targets": [
+        ["linkText=Nosotros", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Nosotros')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Home/About')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Nosotros')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "13bb30b0-7c6e-4d0f-9ea3-8fb6573439d4",
+      "comment": "",
+      "command": "click",
+      "target": "id=EnlaceInstagram",
+      "targets": [
+        ["id=EnlaceInstagram", "id"],
+        ["linkText=pizzeria_artesanal_maxdel", "linkText"],
+        ["css=#EnlaceInstagram", "css:finder"],
+        ["xpath=//a[contains(text(),'pizzeria_artesanal_maxdel')]", "xpath:link"],
+        ["xpath=//a[@id='EnlaceInstagram']", "xpath:attributes"],
+        ["xpath=//h6[@id='Instagram']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'https://www.instagram.com/pizzeria_artesanal_maxdel/')]", "xpath:href"],
+        ["xpath=//h6/a", "xpath:position"],
+        ["xpath=//a[contains(.,'pizzeria_artesanal_maxdel')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c8d75f5-332f-4fae-ac90-bc5e80dec136",
+      "comment": "",
+      "command": "waitForText",
+      "target": "css=tittle",
+      "targets": [],
+      "value": "\\nPizzería Artesanal Maxdel (@pizzeria_artesanal_maxdel) • Fotos y vídeos de Instagram"
+    }, {
+      "id": "cfa1cc64-1609-4e58-9f7f-33bd702780f2",
+      "comment": "",
+      "command": "//assertTitle",
+      "target": "",
+      "targets": [],
+      "value": "\\nPizzería Artesanal Maxdel (@pizzeria_artesanal_maxdel) • Fotos y vídeos de Instagram"
+    }, {
+      "id": "975e6530-c162-41c9-b59d-7bacc6335773",
+      "comment": "",
+      "command": "//assertText",
+      "target": "css=.XBGH5>h2",
+      "targets": [],
+      "value": "pizzeria_artesanal_maxdel"
+    }]
+  }, {
+    "id": "09c95fd9-abeb-4f35-9002-bd3541f84a6d",
+    "name": "Prueba Facebook",
+    "commands": [{
+      "id": "5dbfcf80-6dd0-4976-b95f-945a9dfc6a23",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d608c255-2db0-48a5-8a4f-4008e9e55e4e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Nosotros",
+      "targets": [
+        ["linkText=Nosotros", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Nosotros')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Home/About')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Nosotros')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "575b2c5f-b66d-4ed0-8b14-654c1a7f198f",
+      "comment": "",
+      "command": "click",
+      "target": "id=EnlaceFacebook",
+      "targets": [
+        ["id=EnlaceFacebook", "id"],
+        ["css=#EnlaceFacebook", "css:finder"],
+        ["xpath=(//a[contains(text(),'pizzeria_artesanal_maxdel')])[2]", "xpath:link"],
+        ["xpath=//a[@id='EnlaceFacebook']", "xpath:attributes"],
+        ["xpath=//h6[@id='Facebook']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'https://www.facebook.com/pizzeriaartesanalmaxdel')]", "xpath:href"],
+        ["xpath=//h6[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "985da6f2-b203-40b8-bed5-119c43ec738a",
+    "name": "Prueba Whatsapp",
+    "commands": [{
+      "id": "23d5a3c2-ebbb-4504-8658-7a4dab3fbbb0",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "af59cd69-7b0a-4cc5-94aa-c5b906186677",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Nosotros",
+      "targets": [
+        ["linkText=Nosotros", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Nosotros')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Home/About')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Nosotros')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b26cbaf9-54ca-44be-ab9a-ca74d04cd176",
+      "comment": "",
+      "command": "click",
+      "target": "id=EnlaceWhatsapp",
+      "targets": [
+        ["id=EnlaceWhatsapp", "id"],
+        ["linkText=Envianos un Mensaje", "linkText"],
+        ["css=#EnlaceWhatsapp", "css:finder"],
+        ["xpath=//a[contains(text(),'Envianos un Mensaje')]", "xpath:link"],
+        ["xpath=//a[@id='EnlaceWhatsapp']", "xpath:attributes"],
+        ["xpath=//h6[@id='Whatsapp']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'https://l.facebook.com/l.php?u=https%3A%2F%2Fapi.whatsapp.com%2Fsend%3Fphone%3D51952648259%26app%3Dfacebook%26entry_point%3Dpage_cta%26fbclid%3DIwAR0khankQ3gh_GTEiv5m9QNvtMYq4Nq7N1YQLch_iwiIIFoScajHrxgepQI&h=AT1RE8iRPMRfykIzIb6NfUNnazNVJj7IXgTwHweMTHmLy2btWvjg8bsp7XdTM74Fh_ULvDu513ZZiwX-f0X8Fuw_TrEQciomyIQSMS5Wl5CN3DMU3jnX_YlDEy3Y-zvDkcsMyA')]", "xpath:href"],
+        ["xpath=//h6[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Envianos un Mensaje')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "037b0fb9-18c3-4a23-99f0-d8c10702b7dd",
+    "name": "Ver Detalle",
+    "commands": [{
+      "id": "71544c75-a2d6-4192-ac78-b9e0c273255d",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "182bce9e-232c-4282-8b90-e3a23d20d307",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Menú",
+      "targets": [
+        ["linkText=Menú", "linkText"],
+        ["css=.nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Menú')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Home/Menu')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Menú')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef2482b4-1498-418d-80bf-6c4a930641ce",
+      "comment": "",
+      "command": "click",
+      "target": "id=2",
+      "targets": [
+        ["id=1", "id"],
+        ["linkText=Ver Detalle", "linkText"],
+        ["css=#\\31", "css:finder"],
+        ["xpath=//a[contains(text(),'Ver Detalle')]", "xpath:link"],
+        ["xpath=//a[@id='1']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, '/home/Detalle?IdProducto=1')]", "xpath:href"],
+        ["xpath=//div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Ver Detalle')]", "xpath:innerText"]
+      ],
+      "value": "Ver Detalle"
+    }, {
+      "id": "780c655d-8e7f-4064-be5d-b967a4576fcf",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "id=2",
+      "targets": [
+        ["id=1", "id"],
+        ["css=#\\31", "css:finder"],
+        ["xpath=//h1[@id='1']", "xpath:attributes"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Pizza Hawaiana')]", "xpath:innerText"]
+      ],
+      "value": "Pizza Hawaiana"
+    }]
+  }],
+  "suites": [{
+    "id": "beb4eaa3-20c7-4cb2-bc41-98fb934f19da",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["4b9216e0-9635-47b7-88d1-3b32d917453c"]
+  }],
+  "urls": ["https://localhost:7195/"],
+  "plugins": []
+}

@@ -1,0 +1,60 @@
+﻿<body>    
+    <h1>Mi Cesta</h1><br />
+    @{
+        int cont = 0;
+    }
+    <div class="row row-cols-1 row-cols-md-3 g-4">        
+        @foreach(var item in @ViewBag.DatosCesta)
+        {
+            cont++;
+            <div class="col">
+                <div class="card h-100">            
+                    <img src="@item.Producto.UrlImagen" class="card-img-top" alt="Imagen Pizza">
+                    <div class="card-body">
+                         <h5 class="card-title">@item.Producto.Nombre</h5>
+                         <p class="card-text">
+                                Tamaño: @item.TamañoProducto<br/>
+                                Precio: @item.precio<br/>
+                                Cantidad: @item.Cantidad
+                         </p>
+                    </div>
+                    <div class="card-footer">
+                         <small class="text-muted">Estado: @item.Pedido.EstadoFK.Nombre</small>
+                    </div>    
+                    <div class="card-footer">
+                         <a href="#" class="btn btn-link">Editar</a>
+                         <a href="/ProcesarCompra/Delete?id=@item.Pedido.Id" class="btn btn-link">Eliminar</a>
+                    </div> 
+                </div>
+            </div>                      
+        }
+    </div>  
+    <div>
+        <br />
+        @{
+            if (cont == 0)
+            {
+                <h2>Tu cesta esta vacía</h2>
+            }
+            else
+            {
+                <h2>Direcciones: </h2>
+                <form action="/ProcesarCompra/PedidoExito" method="post">
+                    <div class="mb-3">
+                        <a href="/Persona/AgregaDireccion?retorno=2" class="btn btn-link">Agregar Dirección</a><br>
+                        <label>Elija dirección de envío: </label>
+                        <select class="form-select" name="IdDireccion" id="IdDireccion">
+                            <option value="">-- Seleccione una direción --</option>
+                            @foreach(var item in @ViewBag.Direcciones)
+                            {
+                                <option value="@item.Id">@item.Direccion</option>                       
+                            }
+                        </select>
+                    </div>
+                    <button class="btn btn-dark btn-lg btn-block" type="submit">Comprar</button>
+                </form>                
+            }
+        }     
+        <a href="/Menu/Index" class="btn btn-link">Regresar al Menú</a>
+    </div>
+</body>

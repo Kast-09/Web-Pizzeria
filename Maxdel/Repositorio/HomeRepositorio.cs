@@ -7,7 +7,7 @@ namespace Maxdel.Repositorio
     public interface IHomeRepositorio
     {
         List<DetallePedido> ObtenerDetalleCesta(int id);
-        List<Producto> ObtenerProductos();
+        List<Productos> ObtenerProductos();
     }
     public class HomeRepositorio : IHomeRepositorio
     {
@@ -22,13 +22,10 @@ namespace Maxdel.Repositorio
         {
             return _dbEntities.detallePedidos
                     .Include(o => o.Producto)
-                    .Include(o => o.Tamaño)
-                    .Include(o => o.Precio)
-                    .Include(o => o.Pedido)
                     .Where(o => o.IdPedido == id).ToList();
         }
 
-        public List<Producto> ObtenerProductos()
+        public List<Productos> ObtenerProductos()
         {
             return _dbEntities.Productos.ToList();
         }

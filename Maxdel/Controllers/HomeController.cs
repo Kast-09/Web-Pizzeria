@@ -23,28 +23,8 @@ namespace Maxdel.Controllers
             return View();
         }
 
-        public IActionResult Menu()
-        {
-            ViewBag.ListaProductos = _homeRepositorio.ObtenerProductos();
-            return View();
-        }
-        public IActionResult Detalle( int IdProducto)
-        {
-            ViewBag.Producto = _dbEntities.Productos.Where(o => o.Id == IdProducto).ToList();
-            ViewBag.Tamanios = _dbEntities.tamaños.Where(o => o.IdProducto == IdProducto).ToList();
-            ViewBag.Precios = _dbEntities.precios.Where(o => o.IdProducto == IdProducto).ToList();
-            return View();
-        }
-
         public IActionResult About()
         {
-            return View();
-        }
-
-        public IActionResult Cesta(int Id)
-        {
-            Id = 1;
-            ViewBag.DatosCesta = _homeRepositorio.ObtenerDetalleCesta(Id);
             return View();
         }
 

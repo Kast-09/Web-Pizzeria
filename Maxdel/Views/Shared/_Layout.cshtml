@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Maxdel</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -20,11 +20,41 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Menu">Menú</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Menu" asp-action="Index">Menú</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">Nosotros</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Tracking" asp-action="Index">Rastrea Pedido</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="ProcesarCompra" asp-action="Cesta">Cesta</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">Nosotros</a>
+                        </li>                        
+                    </ul>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                            <li class="nav-item active">
+                                <a class="nav-link text-light" href="/auth/login">Ingresar</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link text-light" href="/auth/register">Registrarse</a>
+                            </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item active">
+                                <a class="nav-link" href="/Persona/Index">Bienvenido(a) @User.Identity.Name</a>                                
+                                </li>
+                            }
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/auth/logout">Cerrar Sesión</a>
+                                </li>
+                            }
                     </ul>
                 </div>
             </div>

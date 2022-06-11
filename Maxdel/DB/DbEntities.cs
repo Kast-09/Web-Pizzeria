@@ -7,13 +7,17 @@ namespace Maxdel.DB
 {
     public class DbEntities : DbContext
     {
-        public DbSet<Producto> Productos { get; set; }
-        public DbSet<Tamaño> tamaños { get; set; }
-        public DbSet<Precio> precios { get; set; }
+        public DbSet<Productos> Productos { get; set; }
         public DbSet<DetallePedido> detallePedidos { get; set; }
         public DbSet<Pedido> pedidos { get; set; }
-        public DbSet<Cliente> clientes { get; set; }
         public DbSet<Usuario> usuarios { get; set; }
+        public DbSet<TamañoPrecio> tamañoPrecios { get; set; }
+        public DbSet<Tipo> tipos { get; set; }
+        public DbSet<Direcciones> direcciones { get; set; }
+        public DbSet<Estado> estado { get; set; }
+        public DbSet<NroTracking> nroTrackings { get; set; }
+        public DbSet<Boleta> boletas { get; set; }
+        public DbEntities() { }
 
         public DbEntities(DbContextOptions<DbEntities> options): base(options) { }
 
@@ -21,14 +25,16 @@ namespace Maxdel.DB
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new ProductoMapping());
-            modelBuilder.ApplyConfiguration(new TamañoMapping());
-            modelBuilder.ApplyConfiguration(new PrecioMapping());
+            modelBuilder.ApplyConfiguration(new ProductosMapping());
             modelBuilder.ApplyConfiguration(new DetallePedidoMapping());
             modelBuilder.ApplyConfiguration(new PedidoMapping());
-            modelBuilder.ApplyConfiguration(new ClienteMapping());
             modelBuilder.ApplyConfiguration(new UsuarioMapping());
             modelBuilder.ApplyConfiguration(new EstadoMapping());
+            modelBuilder.ApplyConfiguration(new TamañoPrecioMapping());
+            modelBuilder.ApplyConfiguration(new TipoMapping());
+            modelBuilder.ApplyConfiguration(new DireccionesMapping());
+            modelBuilder.ApplyConfiguration(new NroTrackingMapping());
+            modelBuilder.ApplyConfiguration(new BoletaMapping());
         }
     }
 }

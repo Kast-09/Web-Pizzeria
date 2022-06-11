@@ -1,7 +1,16 @@
 ﻿<body>
+    <h1>Nuestro Menú: </h1>
+    @*<div class="input-group rounded">
+      <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+      <span class="input-group-text border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+    <br /><br />*@
+    <br />
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            @foreach(var item in ViewBag.ListaProductos)
+            @foreach(var item in Model)
             {                
                 <div class="col">
                     <div class="card h-100">
@@ -9,11 +18,12 @@
                           <div class="card-body">
                                <h5 class="card-title"><b>@item.Nombre</b></h5>
                                <p class="card-text">@item.Descripcion</p>
-                               <a href="/home/Detalle?IdProducto=@item.Id" class="btn btn-primary">Ver Detalle</a>
+                               <a href="/ProcesarCompra/Detalle?IdProducto=@item.Id" class="btn btn-dark btn-primary">Ver Detalle</a>
                           </div>
                     </div>
                 </div>
             }
         </div>
+        @*<input type="button" value="Go back!" onclick="history.back()">*@
     </div>
 </body>

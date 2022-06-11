@@ -1,0 +1,31 @@
+﻿<body>
+    <div class="container">
+        <form action="/ProcesarCompra/Detalle?IdProducto=@Model.Id" method="post">
+            <div class="text-center">
+                <div class="col-md-3">
+                    <img src="@Model.UrlImagen" class="img-fluid" alt="Imagen Pizzería">
+                </div>
+            </div>
+            <div class="mb-3">                
+                <h1 id="@Model.Id">@Model.Nombre</h1>
+                <p>@Model.Descripcion</p>
+            </div>
+            <div class="mb-3">
+                <label>Tamaño / Precio: </label>
+                <select class="form-select" name="IdTamañoPrecio" id="IdTamañoPrecio">
+                    <option value="">-- Seleccione un tamaño --</option>
+                    @foreach(var item in @ViewBag.TamañoPrecio)
+                    {
+                        <option value="@item.Id">@item.TamañoProducto -> @item.Precio</option>                       
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="Cantidad">Cantidad: </label>
+                <input type="number" Name="Cantidad" id="Cantidad"/>
+            </div>
+            <button class="btn btn-dark btn-primary">Añadir a la Cesta</button>
+            <a href="/Menu/Index" class="btn btn-link">Atras</a>
+        </form >
+    </div>
+</body>

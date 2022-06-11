@@ -10,6 +10,10 @@ namespace Maxdel.DB.Mapping
         {
             builder.ToTable("Usuario", "dbo");
             builder.HasKey(x => x.Id);
+
+            builder.HasOne(o => o.Tipo)
+                .WithMany()
+                .HasForeignKey(o => o.IdTipo);
         }
     }
 }

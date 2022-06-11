@@ -1,0 +1,45 @@
+﻿<body>
+    <div>
+        <h1>Datos Personales: </h1>
+        <a href="/Persona/EditarPersona" class="btn btn-link">Editar Datos Personales</a>
+        <div class="container">
+            <div class="mb-3">
+                <label for="Nombre">Nombre: </label>
+                <input type="text" class="form-control" Name="Nombre" id="Nombre" value="@Model.Nombre" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="Apellido">Apellido: </label>
+                <input type="text" class="form-control" Name="Apellido" id="Apellido" value="@Model.Apellido" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="NroCelular">Número de Celular: </label>
+                <input type="text" class="form-control" Name="NroCelular" id="NroCelular" value="@Model.NroCelular" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="Correo">Correo: </label>
+                <input type="text" class="form-control" Name="Correo" id="Correo" value="@Model.Correo" readonly>
+            </div>
+        </div>
+        <h1>Dirección(es): </h1>
+        <a href="/Persona/AgregaDireccion?retorno=1" method="post" class="btn btn-link">Agregar Dirección</a>
+        <div class="container">
+            @{
+                int cont = 1;
+            }
+            @foreach(var item in @ViewBag.Direcciones)
+            {
+                <h3>Dirección @cont: </h3>
+                <a href="/Persona/EliminarDireccion?id=@item.Id" class="btn btn-link">Eliminar Dirección</a>
+                <div class="mb-3">
+                    <label for="Direccion">Calle/Avenida: </label>
+                    <input type="text" class="form-control" Name="Direccion" id="Direccion" value="@item.Direccion" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="Referencia">Referencia: </label>
+                    <input type="text" class="form-control" Name="Referencia" id="Referencia" value="@item.Referencia" readonly>
+                </div>
+                cont++;
+            }
+        </div>
+    </div>
+</body>

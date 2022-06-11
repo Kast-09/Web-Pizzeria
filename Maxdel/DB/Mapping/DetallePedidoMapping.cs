@@ -11,21 +11,17 @@ namespace Maxdel.DB.Mapping
             builder.ToTable("DetallePedido", "dbo");
             builder.HasKey(o => o.Id);
 
-            builder.HasOne(o => o.Pedido)
-                .WithMany()
-                .HasForeignKey(o => o.IdPedido);
-
             builder.HasOne(o => o.Producto)
                 .WithMany()
                 .HasForeignKey(o => o.IdProducto);
 
-            builder.HasOne(o => o.Tamaño)
+            builder.HasOne(o => o.Pedido)
                 .WithMany()
-                .HasForeignKey(o => o.IdTamaño);
-
-            builder.HasOne(o => o.Precio)
+                .HasForeignKey(o => o.IdPedido);
+                      
+            builder.HasOne(o => o.tamañoPrecio)
                 .WithMany()
-                .HasForeignKey(o => o.IdPrecio);
+                .HasForeignKey(o => o.IdTamañoPrecio);
         }
     }
 }

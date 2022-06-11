@@ -1,0 +1,44 @@
+﻿<body>
+    <div class="container">
+        <div class="mb-3">
+            <h1>Registrar</h1>
+        </div>
+        <div class="mb-3">
+            <form action="" method="post">                
+                <div class="mb-3">
+                    <label for="Nombre">Nombres: </label>
+                    <input type="text" class="form-control" Name="Nombre" id="Nombre">
+                    @Html.ValidationMessage("Nombre")
+                </div>
+                <div class="mb-3">
+                    <label for="Apellidos">Apellidos: </label>
+                    <input type="text" class="form-control" Name="Apellidos" id="Apellidos">
+                    @Html.ValidationMessage("Apellidos")
+                </div>
+                <div class="mb-3">
+                    <label for="NroCelular">Número de Celular: </label>
+                    <input type="text" class="form-control" Name="NroCelular" id="NroCelular">
+                    @Html.ValidationMessage("NroCelular")
+                </div>
+                <div class="mb-3">
+                      <label for="correo" class="form-label">Correo: </label>
+                      <input type="email" class="form-control" name="correo" id="correo" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                      <label for="contraseña" class="form-label">Contraseña: </label>
+                      <input type="password" class="form-control" name="contraseña" id="contraseña">
+                </div>
+                <div class="mb-3">
+                      <label for="Direccion" class="form-label">Dirección: </label>
+                      <input type="text" class="form-control" name="Direccion" id="Direccion">
+                </div>
+                <div class="mb-3">
+                      <label for="Referencia" class="form-label">Referencia: </label>
+                      <input type="text" class="form-control" name="Referencia" id="Referencia">
+                </div>
+                <button type="submit" class="btn btn-dark btn-primary">Registrarse</button>
+                <a href="/Home/index" class="btn btn-link">Cancelar</a>
+            </form>
+        </div>
+    </div>    
+</body>

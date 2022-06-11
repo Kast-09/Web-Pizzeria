@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Maxdel.DB.Mapping
 {
-    public class ClienteMapping: IEntityTypeConfiguration<Cliente>
+    public class ProductosMapping: IEntityTypeConfiguration<Productos>
     {
-        public void Configure(EntityTypeBuilder<Cliente> builder)
+        public void Configure(EntityTypeBuilder<Productos> builder)
         {
-            builder.ToTable("Cliente", "dbo");
+            builder.ToTable("Productos", "dbo");
             builder.HasKey(x => x.Id);
         }
     }
