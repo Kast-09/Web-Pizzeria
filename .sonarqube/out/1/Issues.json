@@ -33,45 +33,6 @@
           }
         },
         {
-          "ruleId": "CS1061",
-          "level": "error",
-          "message": "\"HomeController\" no contiene una definición para \"Cesta\" ni un método de extensión accesible \"Cesta\" que acepte un primer argumento del tipo \"HomeController\" (¿falta alguna directiva using o una referencia de ensamblado?)",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///D:/ALGORITMOS/source/repos/Web%20Pizzeria/MaxdelTest/Controllers/HomeControllerTest.cs",
-                "region": {
-                  "startLine": 39,
-                  "startColumn": 41,
-                  "endLine": 39,
-                  "endColumn": 46
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CS8625",
-          "level": "warning",
-          "message": "No se puede convertir un literal NULL en un tipo de referencia que no acepta valores NULL.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///D:/ALGORITMOS/source/repos/Web%20Pizzeria/MaxdelTest/Controllers/HomeControllerTest.cs",
-                "region": {
-                  "startLine": 38,
-                  "startColumn": 49,
-                  "endLine": 38,
-                  "endColumn": 53
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
           "ruleId": "CS8625",
           "level": "warning",
           "message": "No se puede convertir un literal NULL en un tipo de referencia que no acepta valores NULL.",
@@ -83,45 +44,6 @@
                   "startLine": 48,
                   "startColumn": 49,
                   "endLine": 48,
-                  "endColumn": 53
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS1061",
-          "level": "error",
-          "message": "\"HomeController\" no contiene una definición para \"Menu\" ni un método de extensión accesible \"Menu\" que acepte un primer argumento del tipo \"HomeController\" (¿falta alguna directiva using o una referencia de ensamblado?)",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///D:/ALGORITMOS/source/repos/Web%20Pizzeria/MaxdelTest/Controllers/HomeControllerTest.cs",
-                "region": {
-                  "startLine": 59,
-                  "startColumn": 35,
-                  "endLine": 59,
-                  "endColumn": 39
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CS8625",
-          "level": "warning",
-          "message": "No se puede convertir un literal NULL en un tipo de referencia que no acepta valores NULL.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///D:/ALGORITMOS/source/repos/Web%20Pizzeria/MaxdelTest/Controllers/HomeControllerTest.cs",
-                "region": {
-                  "startLine": 58,
-                  "startColumn": 49,
-                  "endLine": 58,
                   "endColumn": 53
                 }
               }
@@ -195,32 +117,6 @@
               "resultFile": {
                 "uri": "file:///D:/ALGORITMOS/source/repos/Web%20Pizzeria/MaxdelTest/Controllers/HomeControllerTest.cs",
                 "region": {
-                  "startLine": 61,
-                  "startColumn": 13,
-                  "endLine": 61,
-                  "endColumn": 35
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1,
-            "customProperties": {
-              "HasToleranceValue": "False",
-              "IsGenericMethod": "False",
-              "ModelName": "IsNotNull"
-            }
-          }
-        },
-        {
-          "ruleId": "NUnit2019",
-          "level": "note",
-          "message": "Consider using the constraint model, Assert.That(expr, Is.Not.Null), instead of the classic model, Assert.IsNotNull(expr)",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///D:/ALGORITMOS/source/repos/Web%20Pizzeria/MaxdelTest/Controllers/HomeControllerTest.cs",
-                "region": {
                   "startLine": 29,
                   "startColumn": 13,
                   "endLine": 29,
@@ -277,20 +173,6 @@
             "tags": [
               "Compiler",
               "Telemetry"
-            ]
-          }
-        },
-        "CS1061": {
-          "id": "CS1061",
-          "defaultLevel": "error",
-          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1061)",
-          "properties": {
-            "category": "Compiler",
-            "isEnabledByDefault": true,
-            "tags": [
-              "Compiler",
-              "Telemetry",
-              "NotConfigurable"
             ]
           }
         },

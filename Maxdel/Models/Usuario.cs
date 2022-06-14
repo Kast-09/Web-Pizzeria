@@ -1,4 +1,6 @@
-﻿namespace Maxdel.Models
+﻿using Maxdel.Models;
+
+namespace Maxdel.Models
 {
     public class Usuario
     {
@@ -11,5 +13,8 @@
         public string? Correo { get; set; }
         public string? Contraseña { get; set; }
         public string? DNI { get; set; }
+        public int? IdPreguntaSeguridad { get; set; }
+        public PreguntaSeguridad? PreguntaSeguridad { get; set; }
+        public string? RespuestaPS { get; set; }
     }
 }

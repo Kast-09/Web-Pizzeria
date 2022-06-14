@@ -1,0 +1,14 @@
+﻿<body>
+    <h2>Ingresa tu correo electrónico: </h2>
+    <form action="/Auth/Correo" method="post">
+        <div class="form-outline mb-4">
+              <label class="form-label" for="correo">Correo</label>
+              <input type="email" name="correo" id="correo" class="form-control form-control-lg" />
+              @Html.ValidationMessage("Correo")
+        </div>
+        <div class="pt-1 mb-4">
+              <button class="btn btn-dark btn-lg btn-block" type="submit">Buscar</button>
+              <a href="/Auth/Login" class="btn btn-link">Cancelar</a>
+        </div>
+    </form>
+</body>

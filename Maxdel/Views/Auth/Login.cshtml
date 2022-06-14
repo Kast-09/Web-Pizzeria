@@ -21,6 +21,7 @@
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Inicia sesión en tu cuenta</h5>
 
                   @Html.ValidationMessage("AuthError")
+                  @Html.ValidationMessage("Actualizar")
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="correo">Correo</label>
@@ -38,7 +39,7 @@
                     <button class="btn btn-dark btn-lg btn-block" type="submit">Ingresar</button>
                   </div>
 
-                  <a class="small text-muted" href="#!">Olvido su Contraseña?</a>
+                  <a class="small text-muted" href="/Auth/Correo">Olvido su Contraseña?</a>
                   <p class="mb-5 pb-lg-2" style="color: #393f81;">¿No tienes una cuenta? <a href="/Auth/Register"
                       style="color: #393f81;">Registrate aquí</a></p>
                 </form>

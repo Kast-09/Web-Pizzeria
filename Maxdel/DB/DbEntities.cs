@@ -17,6 +17,7 @@ namespace Maxdel.DB
         public DbSet<Estado> estado { get; set; }
         public DbSet<NroTracking> nroTrackings { get; set; }
         public DbSet<Boleta> boletas { get; set; }
+        public DbSet<PreguntaSeguridad> preguntaSeguridads { get; set; }
         public DbEntities() { }
 
         public DbEntities(DbContextOptions<DbEntities> options): base(options) { }
@@ -35,6 +36,7 @@ namespace Maxdel.DB
             modelBuilder.ApplyConfiguration(new DireccionesMapping());
             modelBuilder.ApplyConfiguration(new NroTrackingMapping());
             modelBuilder.ApplyConfiguration(new BoletaMapping());
+            modelBuilder.ApplyConfiguration(new PreguntaSeguridadMapping());
         }
     }
 }

@@ -6,6 +6,7 @@ using Maxdel.DB;
 using Maxdel.DB.Mapping;
 using Maxdel.Models;
 using Maxdel.ViewModels;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Maxdel.Controllers
 {
@@ -57,10 +58,7 @@ namespace Maxdel.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
-        }
-        public IActionResult Prueba()
-        {
+            ViewBag.PreguntasSeguridad = _dbEntities.preguntaSeguridads.ToList();
             return View();
         }
 
@@ -79,17 +77,72 @@ namespace Maxdel.Controllers
                 user.NroCelular = account.NroCelular;
                 user.Correo = account.correo;
                 user.Contraseña = account.contraseña;
+                user.IdPreguntaSeguridad = account.IdPreguntaSeguridad;
+                user.RespuestaPS = account.RespuestaPS;
                 direcciones.IdUsuario = aux + 2;
                 direcciones.Direccion = account.Direccion;
                 direcciones.Referencia = account.Referencia;
                 _dbEntities.usuarios.Add(user);
                 _dbEntities.direcciones.Add(direcciones);
                 _dbEntities.SaveChanges();
-                TempData["SuccessMessage"] = "Se creo el usuario de manera exitosa";
                 return RedirectToAction("Login");
             }
-            TempData["SuccessMessage"] = "No se creo el usuario";
             return View("Register", account);
+        }
+        [HttpGet]
+        public IActionResult Correo()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Correo(string correo)
+        {
+            Usuario? user = _dbEntities.usuarios.FirstOrDefault(o => o.Correo == correo);
+            if (user != null)
+            {
+                return RedirectToAction("PreguntaSeguridad", new { Id = user.Id });
+            }
+            else ModelState.AddModelError("Correo", "Correo no encontrado");
+            return View();
+        }
+        [HttpGet]
+        public IActionResult PreguntaSeguridad(int Id)
+        {
+            ViewBag.PreguntasSeguridad = _dbEntities.preguntaSeguridads.ToList();
+            ViewBag.Id = Id;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult PreguntaSeguridad(int Id, int IdPreguntaSeguridad, string RespuestaPS)
+        {
+            if (_dbEntities.usuarios.Any(o => o.Id == Id
+                       && o.IdPreguntaSeguridad == IdPreguntaSeguridad
+                       && o.RespuestaPS == RespuestaPS))
+            {
+                return RedirectToAction("ActualizarContraseña", new { Id = Id });
+            }
+            ModelState.AddModelError("ErrorPregunta", "Datos Incorrectos");
+            return RedirectToAction("PreguntaSeguridad", new { Id = Id });            
+        }
+        [HttpGet]
+        public IActionResult ActualizarContraseña(int Id)
+        {
+            ViewBag.Id = Id;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ActualizarContraseña(int Id, string contraseña, string contraseñaV)
+        {
+            if(contraseña == contraseñaV)
+            {
+                Usuario user = _dbEntities.usuarios.First(o => o.Id == Id);
+                user.Contraseña = contraseña;
+                _dbEntities.SaveChanges(); 
+                ModelState.AddModelError("Actualizar", "Contraseña actualizada");
+                return RedirectToAction("Login", "Auth");
+            }
+            else ModelState.AddModelError("contraseña", "Las contraseñas no coinciden");
+            return RedirectToAction("ActualizarContraseña", new { Id = Id });
         }
 
         [HttpGet]

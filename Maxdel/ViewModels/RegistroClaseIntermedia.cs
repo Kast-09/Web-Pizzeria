@@ -9,5 +9,7 @@
         public string contraseña { get; set; }
         public string Direccion { get; set; }
         public string Referencia { get; set; }
+        public int IdPreguntaSeguridad { get; set; }
+        public string RespuestaPS { get; set; }
     }
 }

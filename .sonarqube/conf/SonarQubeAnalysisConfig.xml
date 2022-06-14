@@ -105,7 +105,7 @@
     <Property Name="sonar.developerAggregatedInfo.disabled">false</Property>
     <Property Name="sonar.javascript.file.suffixes">.js,.jsx,.mjs,.vue</Property>
     <Property Name="sonar.vbnet.analyzeGeneratedCode">false</Property>
-    <Property Name="sonar.plugins.risk.consent">NOT_ACCEPTED</Property>
+    <Property Name="sonar.plugins.risk.consent">ACCEPTED</Property>
     <Property Name="sonar.auth.gitlab.url">https://gitlab.com</Property>
     <Property Name="sonaranalyzer-vbnet.pluginKey">vbnet</Property>
     <Property Name="sonar.updatecenter.url">https://update.sonarsource.org/update-center.properties</Property>

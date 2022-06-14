@@ -1,0 +1,22 @@
+﻿<body>
+    <form action="/Auth/PreguntaSeguridad?Id=@ViewBag.Id" method="post">
+        <h2>Recuperación Cuenta: </h2>
+        @Html.ValidationMessage("ErrorPregunta")
+        <div class="mb-3">
+              <label>Pregunta de Seguridad: </label>           
+              <select class="form-select" name="IdPreguntaSeguridad" id="IdPreguntaSeguridad">          
+                  <option value="">-- Seleccione Pregunta de Seguridad --</option>          
+                      @foreach(var item in @ViewBag.PreguntasSeguridad)      
+                      {      
+                          <option value="@item.Id">@item.Pregunta</option>                       
+                      }
+              </select>          
+        </div>                        
+        <div class="mb-3">
+              <label for="RespuestaPS" class="form-label">Respuesta Pregunta de seguridad: </label>
+              <input type="text" class="form-control" name="RespuestaPS" id="ReferRespuestaPSencia">
+        </div>
+        <button type="submit" class="btn btn-dark btn-primary">Verificar</button>
+        <a href="/Auth/Login" class="btn btn-link">Cancelar</a>
+    </form>    
+</body>

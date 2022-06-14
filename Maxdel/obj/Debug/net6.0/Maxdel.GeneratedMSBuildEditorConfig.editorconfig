@@ -15,8 +15,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/Auth/ActualizarContraseña.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxBY3R1YWxpemFyQ29udHJhc2XDsWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/Auth/Correo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxDb3JyZW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/Auth/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/Auth/PreguntaSeguridad.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxQcmVndW50YVNlZ3VyaWRhZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/Auth/Register.cshtml]
