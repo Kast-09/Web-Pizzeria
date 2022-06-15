@@ -1,5 +1,6 @@
 ﻿<body>    
-    <h1>Mi Cesta</h1><br />
+    <h1>Mi Cesta</h1>
+    <h2 style="text-align: right; ">Subtotal: S/. @ViewBag.Monto</h2><br />
     @{
         int cont = 0;
     }
@@ -14,17 +15,24 @@
                          <h5 class="card-title">@item.Producto.Nombre</h5>
                          <p class="card-text">
                                 Tamaño: @item.TamañoProducto<br/>
-                                Precio: @item.precio<br/>
-                                Cantidad: @item.Cantidad
+                                Precio: @item.precio
                          </p>
+                         <form action="/ProcesarCompra/ActualizarCantidad?Id=@item.Id" method="post">
+                             <div class="mb-3">
+                                <label for="Cantidad">Cantidad: </label>
+                                <input type="number" Name="Cantidad" id="Cantidad" min="1" max="100" value="@item.Cantidad"/>
+                            </div>
+                            <button class="btn btn-link" type="submit">Actualizar</button>
+                         </form>
                     </div>
                     <div class="card-footer">
-                         <small class="text-muted">Estado: @item.Pedido.EstadoFK.Nombre</small>
-                    </div>    
-                    <div class="card-footer">
-                         <a href="#" class="btn btn-link">Editar</a>
+                         <small class="text-muted">Estado: @item.Pedido.EstadoFK.Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;</small>
                          <a href="/ProcesarCompra/Delete?id=@item.Pedido.Id" class="btn btn-link">Eliminar</a>
-                    </div> 
+                    </div>
                 </div>
             </div>                      
         }

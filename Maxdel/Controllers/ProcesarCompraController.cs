@@ -66,9 +66,30 @@ namespace Maxdel.Controllers
                     .Include(o => o.Pedido.EstadoFK)
                     .Where(o => o.Pedido.IdUsuario == Id && o.Pedido.Estado == 1).ToList();
 
+            decimal monto = 0;
+
+            var aux = _dbEntities.detallePedidos
+                    .Include(o => o.Pedido)
+                    .Where(o => o.Pedido.IdUsuario == Id && o.Pedido.Estado == 1).ToList();
+
+            foreach (var item in aux)
+            {
+                monto += item.precio * item.Cantidad;
+            }
+
+            ViewBag.Monto = monto;
+
             ViewBag.Direcciones = _dbEntities.direcciones
                     .Where(o => o.IdUsuario == Id);
             return View();
+        }
+        [Authorize]
+        public IActionResult ActualizarCantidad(int Id, int Cantidad)
+        {
+            DetallePedido pedido = _dbEntities.detallePedidos.First(o => o.Id == Id);
+            pedido.Cantidad = Cantidad;
+            _dbEntities.SaveChanges();
+            return RedirectToAction("Cesta", "ProcesarCompra");
         }
         private Usuario GetLoggedUser()
         {
