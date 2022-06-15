@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+<body>
+    <h1>Editar Producto</h1><br />
+    @Html.ValidationMessage("AgregarProducto")
+    <div class="container">
+        <form action="/Productos/EditarProducto?Id=@Model.Id" method="post">
+            <div class="mb-3">
+                <label for="Nombre">Nombre: </label>
+                <input type="text" class="form-control" Name="Nombre" id="Nombre" value="@Model.Nombre">
+                @Html.ValidationMessage("Nombre")
+            </div>
+            <div class="mb-3">
+                <label for="Descripcion">Descripción: </label>
+                <textarea class="form-control" Name="Descripcion" id="Descripcion" style="height: 100px">@Model.Descripcion</textarea>                
+                @Html.ValidationMessage("Descripcion")
+            </div>
+            <div class="mb-3">
+                <label for="UrlImagen">Url Imagen: </label>
+                <input type="text" class="form-control" Name="UrlImagen" id="UrlImagen" value="@Model.UrlImagen">
+                @Html.ValidationMessage("UrlImagen")
+            </div>
+            <button class="btn btn-primary">Editar</button>
+            <a href="/Productos/Index" class="btn btn-link">Atras</a>
+        </form>
+    </div>
+</body>

@@ -26,8 +26,8 @@
                               @*class="rounded-circle"*@
                               />
                           <div class="ms-3">
-                            <p class="fw-bold mb-1">@item.Nombre <a href="#" class="btn btn-link">Editar</a>
-                                <a href="#" class="btn btn-link">Agregar Tamaño/Precio</a></p>                        
+                            <p class="fw-bold mb-1">@item.Nombre <a href="/Productos/EditarProducto?Id=@item.Id" class="btn btn-link">Editar</a>
+                                <a href="/Productos/AgregarTamañoPrecio?Id=@item.Id" class="btn btn-link">Agregar Tamaño/Precio</a></p>                        
                             <p class="text-muted mb-0">@item.Descripcion</p>
                           </div>
                         </div>
