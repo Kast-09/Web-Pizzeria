@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+<body>
+    <h1>Agregar Producto</h1><br />
+    @Html.ValidationMessage("AgregarProducto")
+    <div class="container">
+        <form action="/Productos/AgregarProducto" method="post">
+            <div class="mb-3">
+                <label for="Nombre">Nombre: </label>
+                <input type="text" class="form-control" Name="Nombre" id="Nombre">
+                @Html.ValidationMessage("Nombre")
+            </div>
+            <div class="mb-3">
+                <label for="Descripcion">Descripción: </label>
+                <textarea class="form-control" placeholder="Ingrese la descripción" Name="Descripcion" id="Descripcion" style="height: 100px"></textarea>                
+                @Html.ValidationMessage("Descripcion")
+            </div>
+            <div class="mb-3">
+                <label for="UrlImagen">Url Imagen: </label>
+                <input type="text" class="form-control" Name="UrlImagen" id="UrlImagen">
+                @Html.ValidationMessage("UrlImagen")
+            </div>
+            <button class="btn btn-primary">Agregar Producto</button>
+            <a href="/Producto/Index" class="btn btn-link">Atras</a>
+        </form>
+    </div>
+</body>

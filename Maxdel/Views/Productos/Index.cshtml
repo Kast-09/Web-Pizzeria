@@ -3,7 +3,7 @@
 }
 <body>
     <h1>Lista de Productos: </h1>  
-    <a href="#" class="btn btn-link">Agregar Producto</a><br />  
+    <a href="/Productos/AgregarProducto" class="btn btn-link">Agregar Producto</a><br />  
     <table class="table align-middle mb-0 bg-white">
       <thead class="bg-light">
         <tr>
@@ -23,7 +23,7 @@
                               src="@item.UrlImagen"
                               alt=""
                               style="width: 100px; height: 100px"
-                              class="rounded-circle"
+                              @*class="rounded-circle"*@
                               />
                           <div class="ms-3">
                             <p class="fw-bold mb-1">@item.Nombre <a href="#" class="btn btn-link">Editar</a>
