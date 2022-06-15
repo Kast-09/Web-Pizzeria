@@ -1,0 +1,24 @@
+﻿<body>
+    <h1>Actualizar Contraseña</h1>
+    <div class="container">
+        <form action="/Persona/ActualizarContraseña" method="post">
+            <div class="form-outline mb-4">
+                <label class="form-label" for="contraseñaActual">Contraseña Actual: </label>
+                <input type="password" name="contraseñaActual" id="contraseñaActual" class="form-control form-control-lg" />
+                 @Html.ValidationMessage("contraseñaActual")
+            </div><br />
+            <div class="form-outline mb-4">
+                <label class="form-label" for="contraseñaNueva">Contraseña Nueva: </label>
+                <input type="password" name="contraseñaNueva" id="contraseñaNueva" class="form-control form-control-lg" />
+                @Html.ValidationMessage("contraseñaNueva")
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="contraseñaVerificar">Verificar Contraseña: </label>
+                <input type="password" name="contraseñaVerificar" id="contraseñaVerificar" class="form-control form-control-lg" />
+                @Html.ValidationMessage("contraseñaNueva")
+            </div>
+            <button type="submit" class="btn btn-dark btn-primary">Actualizar</button>
+            <a href="/Auth/Login" class="btn btn-link">Cancelar</a>
+        </form>        
+    </div>
+</body>

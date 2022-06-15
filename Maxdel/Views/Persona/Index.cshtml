@@ -1,6 +1,7 @@
 ﻿<body>
+    @Html.ValidationMessage("Actualizar")
     <div>
-        <h1>Datos Personales: </h1>
+        <h2>Datos Personales: </h2>
         <a href="/Persona/EditarPersona" class="btn btn-link">Editar Datos Personales</a>
         <div class="container">
             <div class="mb-3">
@@ -20,7 +21,7 @@
                 <input type="text" class="form-control" Name="Correo" id="Correo" value="@Model.Correo" readonly>
             </div>
         </div>
-        <h1>Dirección(es): </h1>
+        <h2>Dirección(es): </h2>
         <a href="/Persona/AgregaDireccion?retorno=1" method="post" class="btn btn-link">Agregar Dirección</a>
         <div class="container">
             @{
@@ -41,5 +42,7 @@
                 cont++;
             }
         </div>
+        <h2>Contraseña: </h2>
+        <a href="/Persona/ActualizarContraseña" method="post" class="btn btn-link">Cambiar contraseña aquí</a>
     </div>
 </body>

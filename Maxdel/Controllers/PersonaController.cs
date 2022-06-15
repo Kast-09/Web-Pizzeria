@@ -63,6 +63,31 @@ namespace Maxdel.Controllers
             _dbEntities.SaveChanges();
             return RedirectToAction("Index", "Persona");
         }
+        [HttpGet]
+        public IActionResult ActualizarContraseña()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ActualizarContraseña(string contraseñaActual, string contraseñaNueva, string contraseñaVerificar)
+        {
+            int Id = GetLoggedUser().Id;
+            if (_dbEntities.usuarios.Any(x => x.Id == Id && x.Contraseña == contraseñaActual))
+            {
+                if (contraseñaNueva == contraseñaVerificar)
+                {
+                    Usuario user = _dbEntities.usuarios.First(o => o.Id == Id);
+                    user.Contraseña = contraseñaNueva;
+                    _dbEntities.SaveChanges();
+                    ModelState.AddModelError("Actualizar", "Contraseña actualizada");
+                    return RedirectToAction("Index", "Persona");
+                }
+                ModelState.AddModelError("contraseñaNueva", "Las contraseñas no coinciden");
+                return View();
+            }
+            ModelState.AddModelError("contraseñaActual", "Contraseña Erronea");
+            return View();
+        }
         private Usuario GetLoggedUser()
         {
             var claim = HttpContext.User.Claims.First();
