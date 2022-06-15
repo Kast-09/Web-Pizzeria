@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GaUDv9mNGbXO8wYqT+d9ZIbTlK9b8qo9uOHfjp8ymzI=",
+  "Hash": "wvn2ewGYPZA7SUmznDBjrbz9Mpzv3wXJUBL8oLNrD0o=",
   "Source": "Maxdel",
   "BasePath": "_content/Maxdel",
   "Mode": "Default",
@@ -1137,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\maxdel.ico",
+      "SourceId": "Maxdel",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\",
+      "BasePath": "_content/Maxdel",
+      "RelativePath": "maxdel.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\maxdel.ico"
     }
   ]
 }

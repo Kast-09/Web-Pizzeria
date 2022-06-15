@@ -9,7 +9,7 @@ namespace Maxdel.Controllers
 {
     public class MenuController : Controller
     {
-        private DbEntities _dbEntities;
+        private readonly DbEntities _dbEntities;
 
         public MenuController(DbEntities dbEntities)
         {

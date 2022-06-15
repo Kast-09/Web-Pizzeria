@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] Maxdel</title>
+    <title>@ViewData["Title"] Intranet Maxdel</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Maxdel.styles.css" asp-append-version="true" />
+    <link rel="icon" href="~/maxdel.ico">
 </head>
 <body>
     <header>
@@ -21,7 +22,10 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="HomeAdmin" asp-action="Index">Index</a>
-                        </li>                       
+                        </li>      
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
+                        </li>  
                     </ul>
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">

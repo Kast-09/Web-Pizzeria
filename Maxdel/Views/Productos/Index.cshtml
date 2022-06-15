@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+<body>
+    <h1>Lista de Productos: </h1>  
+    <a href="#" class="btn btn-link">Agregar Producto</a><br />  
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>Producto</th>
+          <th>Tamaño</th>
+          <th>Precio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td WIDTH="150">
+                        <div class="d-flex align-items-center">
+                          <img
+                              src="@item.UrlImagen"
+                              alt=""
+                              style="width: 100px; height: 100px"
+                              class="rounded-circle"
+                              />
+                          <div class="ms-3">
+                            <p class="fw-bold mb-1">@item.Nombre <a href="#" class="btn btn-link">Editar</a>
+                                <a href="#" class="btn btn-link">Agregar Tamaño/Precio</a></p>                        
+                            <p class="text-muted mb-0">@item.Descripcion</p>
+                          </div>
+                        </div>
+                    </td>  
+                    <td WIDTH="20">
+                        @foreach(var item2 in @ViewBag.Tamaños)
+                        {
+                            if (item2.IdProducto == @item.Id)
+                            {
+                                <p>@item2.TamañoProducto</p>                     
+                            }
+                        }
+                    </td> 
+                    <td WIDTH="20">
+                        @foreach(var item2 in @ViewBag.Tamaños)
+                        {
+                            if (item2.IdProducto == @item.Id)
+                            {
+                                <p>S/. @item2.Precio</p>                     
+                            }
+                        }
+                    </td>   
+                    <td WIDTH="50">
+                        @foreach(var item2 in @ViewBag.Tamaños)
+                        {
+                            if (item2.IdProducto == @item.Id)
+                            {
+                                <p>
+                                    <a href="#" class="btn btn-link">Editar</a>
+                                    <a href="#" class="btn btn-link">Eliminar</a>  
+                                </p>             
+                            }
+                        }
+                    </td> 
+                </tr>
+            }        
+        
+        </tbody>
+    </table>
+</body>
