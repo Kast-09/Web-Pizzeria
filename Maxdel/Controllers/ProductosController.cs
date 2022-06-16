@@ -70,5 +70,22 @@ namespace Maxdel.Controllers
             _dbEntities.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult EditarTamañoPrecio(int Id)
+        {
+            var tamañoPrecio = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
+            ViewBag.Producto = _dbEntities.Productos.First(o => o.Id == tamañoPrecio.IdProducto);
+            return View(tamañoPrecio);
+        }
+        [HttpPost]
+        public IActionResult EditarTamañoPrecio(int Id, TamañoPrecio tamañoPrecio)
+        {
+            TamañoPrecio tamañoPrecio1 = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
+            tamañoPrecio1.TamañoProducto = tamañoPrecio.TamañoProducto;
+            tamañoPrecio1.Precio = tamañoPrecio.Precio;
+            _dbEntities.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

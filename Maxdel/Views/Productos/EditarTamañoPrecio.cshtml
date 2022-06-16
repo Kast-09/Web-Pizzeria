@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+<body>
+    <div class="container">
+        @*<div class="clearfix">                            
+            <img src="@ViewBag.UrlImagen" class="img-thumbnailcol-md-6 float-md-end mb-3 ms-md-3" width="300px" alt="Imagen Producto">
+            <h1 id="@ViewBag.Id">@ViewBag.Nombre</h1>
+            <p>@ViewBag.Descripcion</p>
+        </div>  *@     
+        <h1>Editar Tamaño Precio: </h1><br />
+        @Html.ValidationMessage("Agregar")
+        <form action="/Productos/EditarTamañoPrecio?Id=@Model.Id" method="post">
+            <div class="mb-3">
+                <label for="TamañoProducto">Tamaño Producto: </label>
+                <input type="text" class="form-control" Name="TamañoProducto" id="TamañoProducto" value="@Model.TamañoProducto">
+                @Html.ValidationMessage("TamañoProducto")
+            </div>
+            <div class="mb-3">
+                <label for="Precio">Precio: </label>
+                <input type="number" class="form-control" Name="Precio" id="Precio" min="0" value="@Model.Precio">
+                @Html.ValidationMessage("Precio")
+            </div>
+            <button class="btn btn-primary">Agregar Datos</button>
+            <a href="/Productos/Index" class="btn btn-link">Atras</a>
+        </form>
+    </div>
+</body>
