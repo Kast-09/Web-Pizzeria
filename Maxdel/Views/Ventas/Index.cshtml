@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+<body>
+    <h1>Reporte de Ventas Total: </h1>
+    <h2 style="text-align: right;">Dinero Obtenido: S/. @ViewBag.Subtotal</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nro Boleta</th>
+                <th>Fecha</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var boletas in (List<Boleta>)Model)
+            {
+                <tr>
+                    <td>@boletas.Id</td>
+                    <td>@boletas.NroBoleta</td>
+                    <td>@boletas.Fecha</td>
+                    <td>S/. @boletas.MontoTotal</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

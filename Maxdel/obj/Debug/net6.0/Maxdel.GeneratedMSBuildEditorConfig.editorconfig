@@ -51,18 +51,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/Pedidos/Anulado.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xBbnVsYWRvLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/Pedidos/Entregado.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xFbnRyZWdhZG8uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/Pedidos/Espera.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xFc3BlcmEuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/Pedidos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -133,6 +121,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/Tracking/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhY2tpbmdcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/Ventas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/ALGORITMOS/source/repos/Web Pizzeria/Maxdel/Views/_ViewImports.cshtml]

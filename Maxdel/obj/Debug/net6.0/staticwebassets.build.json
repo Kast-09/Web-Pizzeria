@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7tdaXILworbDMeqwptpnTA/4+T5DqPOQYlMfHnpEWnk=",
+  "Hash": "YRTTxcynwoVBGug3ewEqiq3h4ckpF/qVfgNfLp7y1L0=",
   "Source": "Maxdel",
   "BasePath": "_content/Maxdel",
   "Mode": "Default",
@@ -253,6 +253,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagenes\\productos.png"
+    },
+    {
+      "Identity": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\Imagenes\\ventas.png",
+      "SourceId": "Maxdel",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\",
+      "BasePath": "_content/Maxdel",
+      "RelativePath": "Imagenes/ventas.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagenes\\ventas.png"
     },
     {
       "Identity": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\js\\site.js",
