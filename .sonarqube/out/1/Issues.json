@@ -6,7 +6,7 @@
       "tool": {
         "name": "Compilador de Microsoft (R) Visual C#",
         "version": "4.2.0.0",
-        "fileVersion": "4.2.0-4.22220.2 (1e40aa11)",
+        "fileVersion": "4.2.0-4.22220.5 (432d17a8)",
         "semanticVersion": "4.2.0",
         "language": "es-MX"
       },
@@ -117,9 +117,9 @@
               "resultFile": {
                 "uri": "file:///D:/ALGORITMOS/source/repos/Web%20Pizzeria/MaxdelTest/Controllers/HomeControllerTest.cs",
                 "region": {
-                  "startLine": 29,
+                  "startLine": 51,
                   "startColumn": 13,
-                  "endLine": 29,
+                  "endLine": 51,
                   "endColumn": 35
                 }
               }
@@ -143,9 +143,9 @@
               "resultFile": {
                 "uri": "file:///D:/ALGORITMOS/source/repos/Web%20Pizzeria/MaxdelTest/Controllers/HomeControllerTest.cs",
                 "region": {
-                  "startLine": 51,
+                  "startLine": 29,
                   "startColumn": 13,
-                  "endLine": 51,
+                  "endLine": 29,
                   "endColumn": 35
                 }
               }

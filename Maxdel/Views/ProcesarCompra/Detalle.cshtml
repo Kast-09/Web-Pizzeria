@@ -14,7 +14,7 @@
                 <label>Tamaño / Precio: </label>
                 <select class="form-select" name="IdTamañoPrecio" id="IdTamañoPrecio">
                     <option value="">-- Seleccione un tamaño --</option>
-                    @foreach(var item in @ViewBag.TamañoPrecio)
+                    @foreach(var item in Model.TamañoPrecios)
                     {
                         <option value="@item.Id">@item.TamañoProducto -> @item.Precio</option>                       
                     }

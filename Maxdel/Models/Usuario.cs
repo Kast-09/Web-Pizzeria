@@ -16,5 +16,7 @@ namespace Maxdel.Models
         public int? IdPreguntaSeguridad { get; set; }
         public PreguntaSeguridad? PreguntaSeguridad { get; set; }
         public string? RespuestaPS { get; set; }
+        public List<Direcciones> Direcciones { get; set; }
+        public List<Pedido> Pedidos { get; set; }
     }
 }

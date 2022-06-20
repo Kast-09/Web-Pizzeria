@@ -12,7 +12,7 @@ namespace Maxdel.DB.Mapping
             builder.HasKey(o => o.Id);
 
             builder.HasOne(o => o.Usuario)
-                .WithMany()
+                .WithMany(o => o.Direcciones)
                 .HasForeignKey(o => o.IdUsuario);
         }
     }

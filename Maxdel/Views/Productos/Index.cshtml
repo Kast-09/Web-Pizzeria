@@ -14,52 +14,44 @@
         </tr>
       </thead>
       <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in (List<Productos>)Model)
             {
                 <tr>
                     <td WIDTH="150">
                         <div class="d-flex align-items-center">
                           <img
                               src="@item.UrlImagen"
-                              alt=""
-                              style="width: 100px; height: 100px"
-                              @*class="rounded-circle"*@
+                              alt="Imagen Producto"
+                              style="width: 120px; height: 100%"
+                              class="rounded"
                               />
                           <div class="ms-3">
-                            <p class="fw-bold mb-1">@item.Nombre <a href="/Productos/EditarProducto?Id=@item.Id" class="btn btn-link">Editar</a>
-                                <a href="/Productos/AgregarTamañoPrecio?Id=@item.Id" class="btn btn-link">Agregar Tamaño/Precio</a></p>                        
+                            <p class="fw-bold mb-1">@item.Nombre</p>                        
                             <p class="text-muted mb-0">@item.Descripcion</p>
+                            <p><a href="/Productos/EditarProducto?Id=@item.Id" class="btn btn-link">Editar</a>
+                                <a href="/Productos/AgregarTamañoPrecio?Id=@item.Id" class="btn btn-link">Agregar Tamaño/Precio</a></p>
                           </div>
                         </div>
                     </td>  
                     <td WIDTH="20">
-                        @foreach(var item2 in @ViewBag.Tamaños)
+                        @foreach(var item2 in item.TamañoPrecios)
                         {
-                            if (item2.IdProducto == @item.Id)
-                            {
-                                <p>@item2.TamañoProducto</p>                     
-                            }
+                            <p>@item2.TamañoProducto</p> 
                         }
                     </td> 
                     <td WIDTH="20">
-                        @foreach(var item2 in @ViewBag.Tamaños)
+                        @foreach(var item2 in item.TamañoPrecios)
                         {
-                            if (item2.IdProducto == @item.Id)
-                            {
-                                <p>S/. @item2.Precio</p>                     
-                            }
+                            <p>S/. @item2.Precio</p> 
                         }
                     </td>   
                     <td WIDTH="50">
-                        @foreach(var item2 in @ViewBag.Tamaños)
+                        @foreach(var item2 in item.TamañoPrecios)
                         {
-                            if (item2.IdProducto == @item.Id)
-                            {
-                                <p>
-                                    <a href="/Productos/EditarTamañoPrecio?Id=@item2.Id" class="btn btn-link">Editar</a>
-                                    <a href="#" class="btn btn-link">Eliminar</a>  
-                                </p>             
-                            }
+                            <span>
+                                <a href="/Productos/EditarTamañoPrecio?Id=@item2.Id" class="btn btn-link">Editar</a>
+                                <a href="/Productos/EliminarTamañoPrecio?Id=@item2.Id" class="btn btn-link">Eliminar</a>  
+                            </span>   
                         }
                     </td> 
                 </tr>

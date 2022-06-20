@@ -12,7 +12,7 @@ namespace Maxdel.DB.Mapping
             builder.HasKey(o => o.Id);
 
             builder.HasOne(o => o.Usuario)
-                .WithMany()
+                .WithMany(o => o.Pedidos)
                 .HasForeignKey(o => o.IdUsuario);
 
             builder.HasOne(o => o.EstadoFK)
@@ -20,7 +20,7 @@ namespace Maxdel.DB.Mapping
                 .HasForeignKey(o => o.Estado);
 
             builder.HasOne(o => o.boleta)
-                .WithMany()
+                .WithMany(o => o.Pedidos)
                 .HasForeignKey(o => o.IdBoleta);
         }
     }

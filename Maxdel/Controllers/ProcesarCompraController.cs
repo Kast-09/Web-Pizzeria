@@ -18,8 +18,9 @@ namespace Maxdel.Controllers
         [HttpGet]
         public IActionResult Detalle(int IdProducto)
         {
-            var Producto = _dbEntities.Productos.First(o => o.Id == IdProducto);
-            ViewBag.TamañoPrecio = _dbEntities.tamañoPrecios.Where(o => o.IdProducto == IdProducto).ToList();
+            var Producto = _dbEntities.Productos
+                                .Include("TamañoPrecios")
+                                .First(o => o.Id == IdProducto);
             return View(Producto);
         }
         [HttpPost]
@@ -31,23 +32,21 @@ namespace Maxdel.Controllers
             DetallePedido detallePedido = new DetallePedido();
             pedido.IdUsuario = Id;
             pedido.Estado = 1;
+            pedido.Destino = "Delivery";
             _dbEntities.pedidos.Add(pedido);
             _dbEntities.SaveChanges();
-            var pedidos = _dbEntities.pedidos.ToList();
-            Pedido pedidoAux = new Pedido();
-            foreach (var item in pedidos)
-            {
-                pedidoAux.Id = item.Id;
-            }
+
+            int idPedido = _dbEntities.pedidos.OrderBy(o => o.Id).Last().Id;
+
             detallePedido.IdProducto = IdProducto;
-            detallePedido.IdPedido = pedidoAux.Id;
+            detallePedido.IdPedido = idPedido;
             detallePedido.IdTamañoPrecio = clase.IdTamañoPrecio;
             detallePedido.Cantidad = clase.Cantidad;
             TamañoPrecio tamañoPrecio = _dbEntities.tamañoPrecios.First(o => o.Id == detallePedido.IdTamañoPrecio);
             detallePedido.TamañoProducto = tamañoPrecio.TamañoProducto;
             detallePedido.precio = tamañoPrecio.Precio;
             Pedido pedidoAux2 = new Pedido();
-            pedidoAux2 = _dbEntities.pedidos.First(o => o.Id == pedidoAux.Id);
+            pedidoAux2 = _dbEntities.pedidos.First(o => o.Id == idPedido);
             pedidoAux2.Monto = clase.Cantidad * tamañoPrecio.Precio;
             _dbEntities.SaveChanges();
             _dbEntities.detallePedidos.Add(detallePedido);
@@ -66,6 +65,15 @@ namespace Maxdel.Controllers
                     .Include(o => o.Pedido.EstadoFK)
                     .Where(o => o.Pedido.IdUsuario == Id && o.Pedido.Estado == 1).ToList();
 
+            ViewBag.Monto = obtenerMonto(Id);
+
+            ViewBag.Direcciones = _dbEntities.direcciones
+                    .Where(o => o.IdUsuario == Id);
+            return View();
+        }
+
+        public decimal obtenerMonto(int Id)
+        {
             decimal monto = 0;
 
             var aux = _dbEntities.detallePedidos
@@ -77,12 +85,9 @@ namespace Maxdel.Controllers
                 monto += item.precio * item.Cantidad;
             }
 
-            ViewBag.Monto = monto;
-
-            ViewBag.Direcciones = _dbEntities.direcciones
-                    .Where(o => o.IdUsuario == Id);
-            return View();
+            return monto;
         }
+
         [Authorize]
         public IActionResult ActualizarCantidad(int Id, int Cantidad)
         {
@@ -163,7 +168,6 @@ namespace Maxdel.Controllers
             string nroBoleta = "001-";
             int aux2;
             int nroTemp = _dbEntities.boletas.Count();
-            aux2 = nroTemp;
             nroTemp++;
             string aux = nroTemp.ToString();
             nroTemp = aux.Length;
@@ -200,6 +204,8 @@ namespace Maxdel.Controllers
 
             _dbEntities.boletas.Add(boleta);
             _dbEntities.SaveChanges();
+
+            aux2 = _dbEntities.boletas.OrderBy(o => o.Id).Last().Id;
 
             return aux2;
         }

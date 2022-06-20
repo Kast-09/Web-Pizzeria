@@ -1,4 +1,6 @@
-﻿namespace Maxdel.Models
+﻿using Maxdel.Models;
+
+namespace Maxdel.Models
 {
     public class Productos
     {
@@ -6,5 +8,6 @@
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string UrlImagen { get; set; }
+        public List<TamañoPrecio> TamañoPrecios { get; set; }
     }
 }

@@ -3,8 +3,10 @@ LD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Controllers\AuthController.csu
 QD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Controllers\HomeAdminController.csutf-8U
 LD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Controllers\HomeController.csutf-8U
 LD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Controllers\MenuController.csutf-8X
+OD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Controllers\PedidosController.csutf-8X
 OD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Controllers\PersonaController.csutf-8_
-VD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Controllers\ProcesarCompraController.csutf-8Y
+VD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Controllers\ProcesarCompraController.csutf-8Z
+QD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Controllers\ProductosController.csutf-8Y
 PD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Controllers\TrackingController.csutf-8H
 ?D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\DbEntities.csutf-8S
 JD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\Mapping\BoletaMapping.csutf-8Z
@@ -12,7 +14,8 @@ QD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\Mapping\DetallePedidoMapping.
 OD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\Mapping\DireccionesMapping.csutf-8S
 JD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\Mapping\EstadoMapping.csutf-8X
 OD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\Mapping\NroTrackingMapping.csutf-8S
-JD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\Mapping\PedidoMapping.csutf-8V
+JD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\Mapping\PedidoMapping.csutf-8^
+UD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\Mapping\PreguntaSeguridadMapping.csutf-8V
 MD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\Mapping\ProductosMapping.csutf-8Z
 QD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\Mapping\Tama√±oPrecioMapping.csutf-8Q
 HD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\DB\Mapping\TipoMapping.csutf-8T
@@ -23,7 +26,8 @@ DD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Models\Direcciones.csutf-8P
 GD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Models\ErrorViewModel.csutf-8H
 ?D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Models\Estado.csutf-8M
 DD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Models\NroTracking.csutf-8H
-?D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Models\Pedido.csutf-8K
+?D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Models\Pedido.csutf-8S
+JD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Models\PreguntaSeguridad.csutf-8K
 BD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Models\Productos.csutf-8O
 FD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Models\Tama√±oPrecio.csutf-8F
 =D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Models\Tipo.csutf-8I
@@ -36,19 +40,29 @@ XD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\obj\Debug\net6.0\Maxdel.GlobalUs
 nD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.csutf-8a
 VD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\obj\Debug\net6.0\Maxdel.AssemblyInfo.csutf-8t
 iD:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\obj\Debug\net6.0\Maxdel.MvcApplicationPartsAssemblyInfo.csutf-8f
-[D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\obj\Debug\net6.0\Maxdel.RazorAssemblyInfo.csutf-8è
-ÉMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Auth_Login_cshtml.g.csutf-8í
+[D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\obj\Debug\net6.0\Maxdel.RazorAssemblyInfo.csutf-8ü
+ìMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Auth_ActualizarContrase√±a_cshtml.g.csutf-8ê
+ÑMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Auth_Correo_cshtml.g.csutf-8è
+ÉMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Auth_Login_cshtml.g.csutf-8õ
+èMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Auth_PreguntaSeguridad_cshtml.g.csutf-8í
 ÜMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Auth_Register_cshtml.g.csutf-8î
 àMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_HomeAdmin_Index_cshtml.g.csutf-8è
 ÉMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Home_About_cshtml.g.csutf-8è
 ÉMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Home_Index_cshtml.g.csutf-8è
-ÉMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Menu_Index_cshtml.g.csutf-8ú
+ÉMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Menu_Index_cshtml.g.csutf-8í
+ÜMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Pedidos_Index_cshtml.g.csutf-8¢
+ñMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Persona_ActualizarContrase√±a_cshtml.g.csutf-8ú
 êMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Persona_AgregaDireccion_cshtml.g.csutf-8ö
 éMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Persona_EditarPersona_cshtml.g.csutf-8í
 ÜMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Persona_Index_cshtml.g.csutf-8ô
 çMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_ProcesarCompra_Cesta_cshtml.g.csutf-8õ
 èMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_ProcesarCompra_Detalle_cshtml.g.csutf-8ü
-ìMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_ProcesarCompra_PedidoExito_cshtml.g.csutf-8ë
+ìMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_ProcesarCompra_PedidoExito_cshtml.g.csutf-8û
+íMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Productos_AgregarProducto_cshtml.g.csutf-8£
+óMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Productos_AgregarTama√±oPrecio_cshtml.g.csutf-8ù
+ëMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Productos_EditarProducto_cshtml.g.csutf-8¢
+ñMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Productos_EditarTama√±oPrecio_cshtml.g.csutf-8î
+àMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Productos_Index_cshtml.g.csutf-8ë
 ÖMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Shared_Error_cshtml.g.csutf-8•
 ôMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Shared__ValidationScriptsPartial_cshtml.g.csutf-8î
 àMicrosoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Views_Tracking_Estado_cshtml.g.csutf-8ì

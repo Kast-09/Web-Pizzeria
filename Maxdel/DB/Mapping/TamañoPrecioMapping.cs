@@ -12,7 +12,7 @@ namespace Maxdel.DB.Mapping
             builder.HasKey(o => o.Id);
 
             builder.HasOne(o => o.Productos)
-                .WithMany()
+                .WithMany(o => o.TamañoPrecios)
                 .HasForeignKey(o => o.IdProducto);
         }
     }

@@ -1,6 +1,7 @@
 ﻿<body>    
-    <h1>Mi Cesta</h1>
-    <h2 style="text-align: right; ">Subtotal: S/. @ViewBag.Monto</h2><br />
+    <h1>Mi Cesta </h1>
+    <h2 style="text-align: right;">Subtotal: S/. @ViewBag.Monto</h2>
+    <h3><a href="/Menu/Index" class="btn btn-link">Regresar al Menú</a></h3><br />
     @{
         int cont = 0;
     }
@@ -10,7 +11,7 @@
             cont++;
             <div class="col">
                 <div class="card h-100">            
-                    <img src="@item.Producto.UrlImagen" class="card-img-top" alt="Imagen Pizza">
+                    <img src="@item.Producto.UrlImagen" class="card-img-top" alt="Imagen Producto">
                     <div class="card-body">
                          <h5 class="card-title">@item.Producto.Nombre</h5>
                          <p class="card-text">
@@ -62,7 +63,6 @@
                     <button class="btn btn-dark btn-lg btn-block" type="submit">Comprar</button>
                 </form>                
             }
-        }     
-        <a href="/Menu/Index" class="btn btn-link">Regresar al Menú</a>
+        } 
     </div>
 </body>

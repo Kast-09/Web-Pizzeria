@@ -11,7 +11,9 @@ namespace Maxdel.Models
         public Estado EstadoFK { get; set; }
         public decimal? Monto { get; set; }
         public string? CodTracking { get; set; }
-        public int? IdBoleta { get; set; }
+        public int IdBoleta { get; set; }
         public Boleta boleta { get; set; }
+        public string? Destino { get; set; }
+        public List<DetallePedido> DetallePedidos { get; set; }
     }
 }

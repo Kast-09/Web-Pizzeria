@@ -2,5 +2,5 @@ projectKey=pizzeriaMaxdel
 serverUrl=https://sonar-test.bit2bittest.com
 serverVersion=9.4.0.54424
 dashboardUrl=https://sonar-test.bit2bittest.com/dashboard?id=pizzeriaMaxdel
-ceTaskId=AYFQz3K2eoUkPA3rNnmq
-ceTaskUrl=https://sonar-test.bit2bittest.com/api/ce/task?id=AYFQz3K2eoUkPA3rNnmq
+ceTaskId=AYFvHYmCUd1ByTdk6l-A
+ceTaskUrl=https://sonar-test.bit2bittest.com/api/ce/task?id=AYFvHYmCUd1ByTdk6l-A

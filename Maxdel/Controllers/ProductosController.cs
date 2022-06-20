@@ -18,8 +18,9 @@ namespace Maxdel.Controllers
 
         public IActionResult Index()
         {
-            var ListaProductos = _dbEntities.Productos.ToList();
-            ViewBag.Tamaños = _dbEntities.tamañoPrecios.ToList();
+            var ListaProductos = _dbEntities.Productos
+                                        .Include("TamañoPrecios")
+                                        .ToList();
             return View(ListaProductos);
         }
 
@@ -74,7 +75,7 @@ namespace Maxdel.Controllers
         [HttpGet]
         public IActionResult EditarTamañoPrecio(int Id)
         {
-            var tamañoPrecio = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
+            TamañoPrecio tamañoPrecio = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
             ViewBag.Producto = _dbEntities.Productos.First(o => o.Id == tamañoPrecio.IdProducto);
             return View(tamañoPrecio);
         }
@@ -84,6 +85,13 @@ namespace Maxdel.Controllers
             TamañoPrecio tamañoPrecio1 = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
             tamañoPrecio1.TamañoProducto = tamañoPrecio.TamañoProducto;
             tamañoPrecio1.Precio = tamañoPrecio.Precio;
+            _dbEntities.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public IActionResult EliminarTamañoPrecio(int Id)
+        {
+            var precioTam = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
+            _dbEntities.tamañoPrecios.Remove(precioTam);
             _dbEntities.SaveChanges();
             return RedirectToAction("Index");
         }
