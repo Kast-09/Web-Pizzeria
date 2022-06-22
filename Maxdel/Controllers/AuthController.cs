@@ -40,7 +40,7 @@ namespace Maxdel.Controllers
 
                 var usuario = _dbEntities.usuarios.First(x => x.Correo == correo && x.Contraseña == contraseña);
 
-                if(usuario.IdTipo == 1)
+                if(usuario.IdRol == 1)
                 {
                     return RedirectToAction("Index", "HomeAdmin");
                 }
@@ -71,7 +71,7 @@ namespace Maxdel.Controllers
 
             if (ModelState.IsValid)
             {
-                user.IdTipo = 2;
+                user.IdRol = 2;
                 user.Nombre = account.Nombre;
                 user.Apellido = account.Apellidos;
                 user.NroCelular = account.NroCelular;
@@ -79,7 +79,7 @@ namespace Maxdel.Controllers
                 user.Contraseña = account.contraseña;
                 user.IdPreguntaSeguridad = account.IdPreguntaSeguridad;
                 user.RespuestaPS = account.RespuestaPS;
-                direcciones.IdUsuario = aux + 2;
+                direcciones.IdUsuario = _dbEntities.usuarios.OrderBy(o => o.Id).Last().Id + 1;
                 direcciones.Direccion = account.Direccion;
                 direcciones.Referencia = account.Referencia;
                 _dbEntities.usuarios.Add(user);

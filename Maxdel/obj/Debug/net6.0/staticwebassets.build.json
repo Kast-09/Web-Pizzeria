@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YRTTxcynwoVBGug3ewEqiq3h4ckpF/qVfgNfLp7y1L0=",
+  "Hash": "cMNbPUbFeLUUIPCxfyJbVrQfLdCG+gh7MKjHgDrxwHA=",
   "Source": "Maxdel",
   "BasePath": "_content/Maxdel",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\Imagenes\\agregarAdmin.png",
+      "SourceId": "Maxdel",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\",
+      "BasePath": "_content/Maxdel",
+      "RelativePath": "Imagenes/agregarAdmin.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagenes\\agregarAdmin.png"
     },
     {
       "Identity": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\Imagenes\\anulado.png",
@@ -253,6 +270,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagenes\\productos.png"
+    },
+    {
+      "Identity": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\Imagenes\\vender.png",
+      "SourceId": "Maxdel",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\",
+      "BasePath": "_content/Maxdel",
+      "RelativePath": "Imagenes/vender.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagenes\\vender.png"
     },
     {
       "Identity": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\Imagenes\\ventas.png",

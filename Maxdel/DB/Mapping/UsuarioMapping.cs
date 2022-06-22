@@ -11,9 +11,9 @@ namespace Maxdel.DB.Mapping
             builder.ToTable("Usuario", "dbo");
             builder.HasKey(x => x.Id);
 
-            builder.HasOne(o => o.Tipo)
+            builder.HasOne(o => o.Roles)
                 .WithMany()
-                .HasForeignKey(o => o.IdTipo);
+                .HasForeignKey(o => o.IdRol);
 
             builder.HasOne(o => o.PreguntaSeguridad)
                 .WithMany()

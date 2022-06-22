@@ -1,0 +1,140 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+<body>
+    <h1>Nueva Venta: </h1><br />
+    <a href="#cesta">Ir a Cesta</a>
+    <a href="/Vender/Limpiar">Limpiar Registro</a>
+    <div class="container" id="productos">
+        <h2>Productos: </h2>
+        <form action="" method="get">
+            <br /><div class="input-group">
+              <input type="search" class="form-control rounded" placeholder="Buscar" name="buscar" id="buscar" aria-label="Search" aria-describedby="search-addon" value="@ViewBag.Buscar"/>
+              <button type="submit" class="btn btn-outline-primary">Buscar</button>
+            </div><br />
+        </form>    
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Tamaño/Precio</th>
+                    <th>Cantidad</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var producto in (List<Productos>)Model)
+                {
+                    <form action="/Vender/AgregarPedido?IdProducto=@producto.Id" method="post">
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                  <img
+                                      src="@producto.UrlImagen"
+                                      alt="Imagen Producto"
+                                      style="width: 120px; height: 100%"
+                                      class="rounded"
+                                      />
+                                  <div class="ms-3">
+                                      <p class="fw-bold mb-1">@producto.Nombre</p>                        
+                                      <p class="text-muted mb-0">@producto.Descripcion</p>
+                                  </div>
+                                </div>
+                            </td>
+                            <td  WIDTH="200">
+                                <select class="form-select" name="IdTamañoPrecio" id="IdTamañoPrecio">
+                                    <option value="">Seleccione</option>
+                                    @foreach(var tamaños in producto.TamañoPrecios)
+                                    {
+                                        <option value="@tamaños.Id">@tamaños.TamañoProducto -> @tamaños.Precio</option>                                                
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                <div class="mb-3">
+                                    <input type="number" Name="Cantidad" id="Cantidad" min="1" max="100"/>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary">Añadir</button>
+                            </td>
+                        </tr>
+                    </form>                    
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="container" id="cesta">
+        <h2>Cesta: </h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Tamaño/Precio</th>
+                    <th>Cantidad</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var detalle in (List<DetallePedido>)ViewBag.Cesta)
+                {                    
+                    <tr>
+                        <td>
+                            @foreach(var producto in (List<Productos>)ViewBag.productos)
+                            {
+                                if(detalle.IdProducto == producto.Id)
+                                {
+                                    <div class="d-flex align-items-center">
+                                          <img
+                                              src="@producto.UrlImagen"
+                                              alt="Imagen Producto"
+                                              style="width: 120px; height: 100%"
+                                              class="rounded"
+                                              />
+                                          <div class="ms-3">
+                                              <p class="fw-bold mb-1">@producto.Nombre</p>                        
+                                              <p class="text-muted mb-0">@producto.Descripcion</p>
+                                          </div>
+                                    </div>break;
+                                }
+                            }                            
+                        </td>
+                        <td>
+                            <p>@detalle.TamañoProducto -> @detalle.precio</p>
+                        </td>
+                        <td>
+                            <p>@detalle.Cantidad</p>
+                        </td>
+                        <td>
+                            <a href="#">Actualizar</a><br/>
+                            <a href="#">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div><br />
+    <div class="container" id="cliente">
+        <h2>Cliente: </h2>        
+        <form action="/Vender/Comprar" method="post">
+            <div class="mb-3">
+                <label for="DNI" class="form-label">DNI: </label>
+                <input type="text" class="form-control" name="DNI" id="DNI">
+            </div>
+            <div class="mb-3">
+                <label for="Nombre" class="form-label">Nombre: </label>
+                <input type="text" class="form-control" name="Nombre" id="Nombre">
+            </div>
+            <div class="mb-3">
+                <label for="Apellido" class="form-label">Apellidos: </label>
+                <input type="text" class="form-control" name="Apellido" id="Apellido">
+            </div>
+            <div class="mb-3">
+                <label for="Direccion" class="form-label">Destino: </label>
+                <input type="text" class="form-control" name="Direccion" id="Direccion">
+            </div>
+            <button type="submit" class="btn btn-primary">Comprar</button>
+        </form>        
+    </div>
+</body>

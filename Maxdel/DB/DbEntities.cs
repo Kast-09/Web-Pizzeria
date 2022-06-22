@@ -12,7 +12,7 @@ namespace Maxdel.DB
         public DbSet<Pedido> pedidos { get; set; }
         public DbSet<Usuario> usuarios { get; set; }
         public DbSet<TamañoPrecio> tamañoPrecios { get; set; }
-        public DbSet<Tipo> tipos { get; set; }
+        public DbSet<Roles> tipos { get; set; }
         public DbSet<Direcciones> direcciones { get; set; }
         public DbSet<Estado> estado { get; set; }
         public DbSet<NroTracking> nroTrackings { get; set; }
@@ -32,7 +32,7 @@ namespace Maxdel.DB
             modelBuilder.ApplyConfiguration(new UsuarioMapping());
             modelBuilder.ApplyConfiguration(new EstadoMapping());
             modelBuilder.ApplyConfiguration(new TamañoPrecioMapping());
-            modelBuilder.ApplyConfiguration(new TipoMapping());
+            modelBuilder.ApplyConfiguration(new RolesMapping());
             modelBuilder.ApplyConfiguration(new DireccionesMapping());
             modelBuilder.ApplyConfiguration(new NroTrackingMapping());
             modelBuilder.ApplyConfiguration(new BoletaMapping());

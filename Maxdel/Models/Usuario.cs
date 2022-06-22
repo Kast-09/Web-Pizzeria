@@ -5,8 +5,8 @@ namespace Maxdel.Models
     public class Usuario
     {
         public int Id { get; set; }
-        public int IdTipo { get; set; }
-        public Tipo Tipo { get; set; }
+        public int IdRol { get; set; }
+        public Roles Roles { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string? NroCelular { get; set; }
@@ -18,5 +18,6 @@ namespace Maxdel.Models
         public string? RespuestaPS { get; set; }
         public List<Direcciones> Direcciones { get; set; }
         public List<Pedido> Pedidos { get; set; }
+        public List<Boleta> Boletas { get; set; }
     }
 }

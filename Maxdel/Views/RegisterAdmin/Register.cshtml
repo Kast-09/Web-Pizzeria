@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+<body>
+    <div class="container">
+        <div class="mb-3">
+            <h1>Registrar Nuevo Administrador: </h1>
+        </div>
+        <div class="mb-3">
+            <form action="" method="post">                
+                <div class="mb-3">
+                    <label for="Nombre">Nombres: </label>
+                    <input type="text" class="form-control" Name="Nombre" id="Nombre">
+                    @Html.ValidationMessage("Nombre")
+                </div>
+                <div class="mb-3">
+                    <label for="Apellido">Apellidos: </label>
+                    <input type="text" class="form-control" Name="Apellido" id="Apellido">
+                    @Html.ValidationMessage("Apellidos")
+                </div>
+                <div class="mb-3">
+                    <label for="NroCelular">Número de Celular: </label>
+                    <input type="text" class="form-control" Name="NroCelular" id="NroCelular">
+                    @Html.ValidationMessage("NroCelular")
+                </div>
+                <div class="mb-3">
+                      <label for="Correo" class="form-label">Correo: </label>
+                      <input type="email" class="form-control" name="Correo" id="Correo" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                      <label for="Contraseña" class="form-label">Contraseña: </label>
+                      <input type="password" class="form-control" name="Contraseña" id="Contraseña">
+                </div>
+                <div class="mb-3">
+                      <label for="DNI" class="form-label">DNI: </label>
+                      <input type="text" class="form-control" name="DNI" id="DNI">
+                </div>
+                @*<h2>Recuperación Cuenta: </h2>
+                <div class="mb-3">
+                    <label  for="IdPreguntaSeguridad" class="form-label">Pregunta de Seguridad: </label>
+                    <select class="form-select" name="IdPreguntaSeguridad" id="IdPreguntaSeguridad">
+                        <option value="">-- Seleccione Pregunta de Seguridad --</option>
+                        @foreach(var item in ViewBag.PreguntasSeguridad)
+                        {
+                            <option value="@item.Id">@item.Pregunta</option>                       
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                      <label for="RespuestaPS" class="form-label">Respuesta Pregunta de seguridad: </label>
+                      <input type="text" class="form-control" name="RespuestaPS" id="RespuestaPS">
+                </div>*@
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+                <a href="/HomeAdmin/Index" class="btn btn-link">Cancelar</a>
+            </form>
+        </div>
+    </div>    
+</body>
+

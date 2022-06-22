@@ -178,12 +178,7 @@ namespace Maxdel.Controllers
             }
             nroBoleta += aux;
 
-            DateTime fecha = new DateTime(DateTime.Now.Year,
-                                        DateTime.Now.Month,
-                                        DateTime.Now.Day,
-                                        DateTime.Now.Hour,
-                                        DateTime.Now.Minute,
-                                        DateTime.Now.Second);
+            DateTime fecha = DateTime.Now;
 
             int Id = GetLoggedUser().Id;
             var montos = _dbEntities.pedidos.Where(o => o.IdUsuario == Id && o.Estado == 1).ToList();
@@ -201,6 +196,7 @@ namespace Maxdel.Controllers
             var direccion = _dbEntities.direcciones.First(o => o.Id == IdDireccion);
             boleta.Direccion = direccion.Direccion;
             boleta.Referencia = direccion.Referencia;
+            boleta.IdUsuario = GetLoggedUser().Id;
 
             _dbEntities.boletas.Add(boleta);
             _dbEntities.SaveChanges();
