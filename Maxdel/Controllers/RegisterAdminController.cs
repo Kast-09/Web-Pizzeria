@@ -22,7 +22,7 @@ namespace Maxdel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(Usuario account) // POST
+        public IActionResult Register(AgregarAdminClaseIntermedia account) // POST
         {
             Usuario user = new Usuario();
 
@@ -35,8 +35,6 @@ namespace Maxdel.Controllers
                 user.Correo = account.Correo;
                 user.Contraseña = account.Contraseña;
                 user.DNI = account.DNI;
-                //user.IdPreguntaSeguridad = account.IdPreguntaSeguridad;
-                //user.RespuestaPS = account.RespuestaPS;
                 _dbEntities.usuarios.Add(user);
                 _dbEntities.SaveChanges();
                 return RedirectToAction("Index","HomeAdmin");
