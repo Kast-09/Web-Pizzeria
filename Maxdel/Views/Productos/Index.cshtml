@@ -17,7 +17,7 @@
             @foreach (var item in (List<Productos>)Model)
             {
                 <tr>
-                    <td WIDTH="150">
+                    <td WIDTH="200">
                         <div class="d-flex align-items-center">
                           <img
                               src="@item.UrlImagen"
@@ -51,7 +51,7 @@
                             <span>
                                 <a href="/Productos/EditarTamañoPrecio?Id=@item2.Id" class="btn btn-link">Editar</a>
                                 <a href="/Productos/EliminarTamañoPrecio?Id=@item2.Id" class="btn btn-link">Eliminar</a>  
-                            </span>   
+                            </span><br />   
                         }
                     </td> 
                 </tr>

@@ -10,6 +10,7 @@
                 <h1 id="@Model.Id">@Model.Nombre</h1>
                 <p>@Model.Descripcion</p>
             </div>
+            @Html.ValidationMessage("Validacion")
             <div class="mb-3">
                 <label>Tamaño / Precio: </label>
                 <select class="form-select" name="IdTamañoPrecio" id="IdTamañoPrecio">
@@ -19,10 +20,12 @@
                         <option value="@item.Id">@item.TamañoProducto -> @item.Precio</option>                       
                     }
                 </select>
+                @Html.ValidationMessage("contraseñas")
             </div>
             <div class="mb-3">
                 <label for="Cantidad">Cantidad: </label>
                 <input type="number" Name="Cantidad" id="Cantidad" min="1" max="100"/>
+                @Html.ValidationMessage("cantidad")
             </div>
             <button class="btn btn-dark btn-primary">Añadir a la Cesta</button>
             <a href="/Menu/Index" class="btn btn-link">Atras</a>

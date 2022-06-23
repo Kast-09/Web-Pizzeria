@@ -27,6 +27,14 @@ namespace Maxdel.Controllers
         [Authorize]
         public IActionResult Detalle(int IdProducto, ComprarClaseIntermedia clase)
         {
+            if (clase.IdProducto == null || clase.Cantidad == null || clase.Cantidad < 1)
+            {
+                var Producto = _dbEntities.Productos
+                                .Include("TamañoPrecios")
+                                .First(o => o.Id == IdProducto);
+                ModelState.AddModelError("Validacion", "Seleccione los campos correctos");
+                return View(Producto);
+            }
             int Id = GetLoggedUser().Id;
             Pedido pedido = new Pedido();
             DetallePedido detallePedido = new DetallePedido();
@@ -91,6 +99,11 @@ namespace Maxdel.Controllers
         [Authorize]
         public IActionResult ActualizarCantidad(int Id, int Cantidad)
         {
+            if(Cantidad == null || Cantidad < 0)
+            {
+                ModelState.AddModelError("cantidad", "Cantidad Invalida");
+                return RedirectToAction("Cesta", "ProcesarCompra");
+            }
             DetallePedido pedido = _dbEntities.detallePedidos.First(o => o.Id == Id);
             pedido.Cantidad = Cantidad;
             _dbEntities.SaveChanges();
@@ -143,6 +156,23 @@ namespace Maxdel.Controllers
         [Authorize]
         public IActionResult PedidoExito(int IdDireccion)
         {
+            if(IdDireccion == null || IdDireccion == 0)
+            {
+                int Id = GetLoggedUser().Id;
+
+                ViewBag.DatosCesta = _dbEntities.detallePedidos
+                        .Include(o => o.Producto)
+                        .Include(o => o.Pedido)
+                        .Include(o => o.Pedido.EstadoFK)
+                        .Where(o => o.Pedido.IdUsuario == Id && o.Pedido.Estado == 1).ToList();
+
+                ViewBag.Monto = obtenerMonto(Id);
+
+                ViewBag.Direcciones = _dbEntities.direcciones
+                        .Where(o => o.IdUsuario == Id);
+                ModelState.AddModelError("Direccion", "Elija una dirección");
+                return View("Cesta", "ProcesarCompra");
+            }
             ViewBag.nroTracking = Comprar(IdDireccion);
             return View();
         }

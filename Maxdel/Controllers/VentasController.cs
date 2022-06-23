@@ -1,9 +1,11 @@
 ﻿using Maxdel.DB;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Maxdel.Controllers
 {
+    [Authorize]
     public class VentasController : Controller
     {
         private readonly DbEntities _dbEntities;

@@ -20,6 +20,10 @@ namespace Maxdel.Controllers
         }
         public IActionResult Estado(string CodTracking)
         {
+            if(CodTracking == null || CodTracking == "")
+            {
+                return View("Index");
+            }
             var detallePedido = _dbEntities.detallePedidos
                                            .Include(o => o.Pedido)
                                            .Include(o => o.Producto)

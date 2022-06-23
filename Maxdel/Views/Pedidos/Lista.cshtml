@@ -3,6 +3,7 @@
 }
 <body>
     <h1>Pedidos @ViewBag.Apartado </h1>
+    @Html.ValidationMessage("Estado")
     @foreach(var boleta in (List<Boleta>)ViewBag.Boletas)
     {
         <div class="card">
@@ -14,6 +15,9 @@
                     if(cont == 0)
                     {
                         <h5 class="card-title" style="text-align: right;">Destino: @pedido.Destino</h5>
+                        <h5>Dirección: </h5>
+                        <p>@boleta.Direccion</p>
+                        <p>@boleta.Referencia</p>
                         <h5>Detalle Pedido: </h5>
                     }cont++;
                     @foreach(var detalle in pedido.DetallePedidos)
@@ -38,6 +42,7 @@
                                     <option value="@item.Id">@item.Nombre</option>  
                                 }                                                
                             }
+                            @Html.ValidationMessage("EstadoPedido")
                         </select><br />
                         <button type="submit" class="btn btn-outline-primary">Actualizar Estado</button>
                     </form>                    

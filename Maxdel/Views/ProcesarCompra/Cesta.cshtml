@@ -23,6 +23,7 @@
                                 <label for="Cantidad">Cantidad: </label>
                                 <input type="number" Name="Cantidad" id="Cantidad" min="1" max="100" value="@item.Cantidad"/>
                             </div>
+                            @Html.ValidationMessage("cantidad")
                             <button class="btn btn-link" type="submit">Actualizar</button>
                          </form>
                     </div>
@@ -59,6 +60,7 @@
                                 <option value="@item.Id">@item.Direccion</option>                       
                             }
                         </select>
+                        @Html.ValidationMessage("Direccion")
                     </div>
                     <button class="btn btn-dark btn-lg btn-block" type="submit">Comprar</button>
                 </form>                

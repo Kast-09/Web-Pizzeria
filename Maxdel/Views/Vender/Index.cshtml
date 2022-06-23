@@ -2,7 +2,8 @@
     Layout = "_LayoutAdmin";
 }
 <body>
-    <h1>Nueva Venta: </h1><br />
+    <h1>Nueva Venta: </h1><br />           
+    @Html.ValidationMessage("Cesta") 
     <a href="#cesta">Ir a Cesta</a>
     <a href="/Vender/Limpiar">Limpiar Registro</a>
     <div class="container" id="productos">
@@ -50,10 +51,12 @@
                                         <option value="@tamaños.Id">@tamaños.TamañoProducto -> @tamaños.Precio</option>                                                
                                     }
                                 </select>
+                                @Html.ValidationMessage("TamañoPrecio")
                             </td>
                             <td>
                                 <div class="mb-3">
-                                    <input type="number" Name="Cantidad" id="Cantidad" min="1" max="100"/>
+                                    <input type="number" Name="Cantidad" id="Cantidad" min="1" max="100"/>                                    
+                                    @Html.ValidationMessage("Cantidad")
                                 </div>
                             </td>
                             <td>
@@ -116,7 +119,8 @@
         </table>
     </div><br />
     <div class="container" id="cliente">
-        <h2>Cliente: </h2>        
+        <h2>Cliente: </h2> 
+        @Html.ValidationMessage("Comprar")
         <form action="/Vender/Comprar" method="post">
             <div class="mb-3">
                 <label for="DNI" class="form-label">DNI: </label>

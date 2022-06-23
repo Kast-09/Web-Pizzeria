@@ -1,22 +1,27 @@
 ﻿<body>
     <h1>Editar Datos Personales: </h1>
+    @Html.ValidationMessage("Editar")
     <form action="/Persona/EditarPersona?id=@Model.Id" method="post">
         <div class="container">
             <div class="mb-3">
                 <label for="Nombre">Nombre: </label>
                 <input type="text" class="form-control" Name="Nombre" id="Nombre" value="@Model.Nombre">
+                @Html.ValidationMessage("Nombre")
             </div>
             <div class="mb-3">
                 <label for="Apellido">Apellido: </label>
                 <input type="text" class="form-control" Name="Apellido" id="Apellido" value="@Model.Apellido">
+                @Html.ValidationMessage("Apellido")
             </div>
             <div class="mb-3">
                 <label for="NroCelular">Número de Celular: </label>
                 <input type="text" class="form-control" Name="NroCelular" id="NroCelular" value="@Model.NroCelular">
+                @Html.ValidationMessage("NroCelular")
             </div>
             <div class="mb-3">
                 <label for="Correo">Correo: </label>
-                <input type="text" class="form-control" Name="Correo" id="Correo" value="@Model.Correo">
+                <input type="email" class="form-control" Name="Correo" id="Correo" value="@Model.Correo">
+                @Html.ValidationMessage("Correo")
             </div>
             <button class="btn btn-dark btn-primary">Guardar</button>
             <a href="/Persona/Index" class="btn btn-link">Cancelar</a>

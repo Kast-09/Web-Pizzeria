@@ -1,6 +1,7 @@
 ﻿<body>
     <form action="/Auth/PreguntaSeguridad?Id=@ViewBag.Id" method="post">
         <h2>Recuperación Cuenta: </h2>
+        @Html.ValidationMessage("Vacio")
         @Html.ValidationMessage("ErrorPregunta")
         <div class="mb-3">
               <label>Pregunta de Seguridad: </label>           
@@ -10,11 +11,13 @@
                       {      
                           <option value="@item.Id">@item.Pregunta</option>                       
                       }
-              </select>          
+              </select>      
+              @Html.ValidationMessage("Pregunta")
         </div>                        
         <div class="mb-3">
               <label for="RespuestaPS" class="form-label">Respuesta Pregunta de seguridad: </label>
               <input type="text" class="form-control" name="RespuestaPS" id="ReferRespuestaPSencia">
+              @Html.ValidationMessage("Respuesta")
         </div>
         <button type="submit" class="btn btn-dark btn-primary">Verificar</button>
         <a href="/Auth/Login" class="btn btn-link">Cancelar</a>

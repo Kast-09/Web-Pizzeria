@@ -7,34 +7,38 @@
             <form action="" method="post">                
                 <div class="mb-3">
                     <label for="Nombre">Nombres: </label>
-                    <input type="text" class="form-control" Name="Nombre" id="Nombre">
+                    <input type="text" class="form-control" Name="Nombre" id="Nombre" value="@Model.Nombre">
                     @Html.ValidationMessage("Nombre")
                 </div>
                 <div class="mb-3">
                     <label for="Apellidos">Apellidos: </label>
-                    <input type="text" class="form-control" Name="Apellidos" id="Apellidos">
+                    <input type="text" class="form-control" Name="Apellidos" id="Apellidos" value="@Model.Apellidos">
                     @Html.ValidationMessage("Apellidos")
                 </div>
                 <div class="mb-3">
                     <label for="NroCelular">Número de Celular: </label>
-                    <input type="text" class="form-control" Name="NroCelular" id="NroCelular">
+                    <input type="text" class="form-control" Name="NroCelular" id="NroCelular" value="@Model.NroCelular">
                     @Html.ValidationMessage("NroCelular")
                 </div>
                 <div class="mb-3">
                       <label for="correo" class="form-label">Correo: </label>
-                      <input type="email" class="form-control" name="correo" id="correo" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" name="correo" id="correo" aria-describedby="emailHelp" value="@Model.correo">
+                      @Html.ValidationMessage("correo")
                 </div>
                 <div class="mb-3">
                       <label for="contraseña" class="form-label">Contraseña: </label>
-                      <input type="password" class="form-control" name="contraseña" id="contraseña">
+                      <input type="password" class="form-control" name="contraseña" id="contraseña" value="@Model.contraseña">
+                      @Html.ValidationMessage("contraseña")
                 </div>
                 <div class="mb-3">
                       <label for="Direccion" class="form-label">Dirección: </label>
-                      <input type="text" class="form-control" name="Direccion" id="Direccion">
+                      <input type="text" class="form-control" name="Direccion" id="Direccion" value="@Model.Direccion">
+                      @Html.ValidationMessage("Direccion")
                 </div>
                 <div class="mb-3">
                       <label for="Referencia" class="form-label">Referencia: </label>
-                      <input type="text" class="form-control" name="Referencia" id="Referencia">
+                      <input type="text" class="form-control" name="Referencia" id="Referencia" value="@Model.Referencia">
+                      @Html.ValidationMessage("Referencia")
                 </div>
                 <h2>Recuperación Cuenta: </h2>
                 <div class="mb-3">
@@ -46,10 +50,12 @@
                             <option value="@item.Id">@item.Pregunta</option>                       
                         }
                     </select>
+                    @Html.ValidationMessage("Pregunta")
                 </div>
                 <div class="mb-3">
                       <label for="RespuestaPS" class="form-label">Respuesta Pregunta de seguridad: </label>
-                      <input type="text" class="form-control" name="RespuestaPS" id="ReferRespuestaPSencia">
+                      <input type="text" class="form-control" name="RespuestaPS" id="ReferRespuestaPSencia" value="@Model.RespuestaPS">
+                      @Html.ValidationMessage("Respuesta")
                 </div>
                 <button type="submit" class="btn btn-dark btn-primary">Registrarse</button>
                 <a href="/Home/Index" class="btn btn-link">Cancelar</a>

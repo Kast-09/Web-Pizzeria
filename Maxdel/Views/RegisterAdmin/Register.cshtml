@@ -26,14 +26,17 @@
                 <div class="mb-3">
                       <label for="Correo" class="form-label">Correo: </label>
                       <input type="email" class="form-control" name="Correo" id="Correo" aria-describedby="emailHelp">
+                      @Html.ValidationMessage("Correo")
                 </div>
                 <div class="mb-3">
                       <label for="Contraseña" class="form-label">Contraseña: </label>
                       <input type="password" class="form-control" name="Contraseña" id="Contraseña">
+                      @Html.ValidationMessage("Contraseña")
                 </div>
                 <div class="mb-3">
                       <label for="DNI" class="form-label">DNI: </label>
                       <input type="text" class="form-control" name="DNI" id="DNI">
+                      @Html.ValidationMessage("DNI")
                 </div>
                 <h2>Recuperación Cuenta: </h2>
                 <div class="mb-3">
@@ -45,10 +48,12 @@
                             <option value="@item.Id">@item.Pregunta</option>                       
                         }
                     </select>
+                    @Html.ValidationMessage("PreguntaSeguridad")
                 </div>
                 <div class="mb-3">
                       <label for="RespuestaPS" class="form-label">Respuesta Pregunta de seguridad: </label>
                       <input type="text" class="form-control" name="RespuestaPS" id="RespuestaPS">
+                      @Html.ValidationMessage("RespuestaPS")
                 </div>
                 <button type="submit" class="btn btn-primary">Registrarse</button>
                 <a href="/HomeAdmin/Index" class="btn btn-link">Cancelar</a>

@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Maxdel.Models;
 using Maxdel.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Maxdel.Controllers
 {
+    [Authorize]
     public class VenderController : Controller
     {
 
@@ -49,6 +51,10 @@ namespace Maxdel.Controllers
 
         public IActionResult AgregarPedido(int IdProducto, int IdTamañoPrecio, int Cantidad)
         {
+            if(IdTamañoPrecio == null || Cantidad == null || IdTamañoPrecio == 0 || Cantidad == 0)
+            {
+                return RedirectToAction("Index");
+            }
             Pedido pedido = new Pedido();
             DetallePedido detallePedido = new DetallePedido();
             cantPedidos = _dbEntities.pedidos.OrderBy(o => o.Id).Last().Id;
@@ -86,6 +92,18 @@ namespace Maxdel.Controllers
 
         public IActionResult Comprar(ClienteClaseIntermedia cliente)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("Comprar", "Los Datos del cliente no pueden ser vacíos");
+                ModelState.AddModelError("Cesta", "Los Datos del cliente no pueden ser vacíos");
+                return RedirectToAction("Index");
+            }
+            if (DetallePedidos.Count == 0 || Pedidos.Count == 0)
+            {
+                ModelState.AddModelError("Cesta", "Los Datos del cliente no pueden ser vacíos");
+                return RedirectToAction("Index");
+            }
+
             Usuario usuario = new Usuario();
             usuario.IdRol = 3;
             usuario.Nombre = cliente.Nombre;

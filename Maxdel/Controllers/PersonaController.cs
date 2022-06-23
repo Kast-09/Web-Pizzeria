@@ -32,6 +32,15 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult EditarPersona(int id, Usuario user)
         {
+            if (user.Nombre == null || user.Nombre == "" 
+                || user.Apellido == null || user.Apellido == "" 
+                || user.NroCelular == null || user.NroCelular == "" 
+                || user.Correo == null || user.Correo == "")
+            {
+                var persona = _dbEntities.usuarios.First(o => o.Id == id);
+                ModelState.AddModelError("Editar", "Datos erroneos");
+                return View("EditarPersona", persona);
+            }
             var Persona = _dbEntities.usuarios.First(o => o.Id == id);
             Persona.Nombre = user.Nombre;
             Persona.Apellido = user.Apellido;
@@ -46,6 +55,11 @@ namespace Maxdel.Controllers
         }
         public IActionResult NuevaDireccion(int retorno, string Direccion, string Referencia)
         {
+            if (Direccion == null || Direccion == "" || Referencia == null || Referencia == "")
+            {
+                ModelState.AddModelError("Excepcion", "Los campos no pueden ser vacíos");
+                return View("AgregaDireccion");
+            }
             int Id = GetLoggedUser().Id;
             Direcciones direccion = new Direcciones();
             direccion.IdUsuario = Id;

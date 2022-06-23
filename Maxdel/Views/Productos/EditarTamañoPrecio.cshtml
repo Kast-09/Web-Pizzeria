@@ -9,7 +9,7 @@
             <p>@ViewBag.Producto.Descripcion</p>
         </div>       
         <h1>Editar Tamaño Precio: </h1><br />
-        @Html.ValidationMessage("Agregar")
+        @Html.ValidationMessage("Editar")
         <form action="/Productos/EditarTamañoPrecio?Id=@Model.Id" method="post">
             <div class="mb-3">
                 <label for="TamañoProducto">Tamaño Producto: </label>

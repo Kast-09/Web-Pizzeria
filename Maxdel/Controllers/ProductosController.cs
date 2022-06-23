@@ -32,6 +32,11 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult AgregarProducto(Productos productos)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("AgregarProducto", "Rellene los datos");
+                return View("AgregarProducto");
+            }
             _dbEntities.Productos.Add(productos);
             _dbEntities.SaveChanges();
             return RedirectToAction("Index");
@@ -46,6 +51,12 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult EditarProducto(int Id, Productos productos)
         {
+            if (!ModelState.IsValid)
+            {
+                var Producto = _dbEntities.Productos.First(o => o.Id == Id);
+                ModelState.AddModelError("EditarProducto", "Rellene los datos");
+                return View("EditarProducto", Producto);
+            }
             var producto = _dbEntities.Productos.First(o => o.Id == Id);
             producto.Nombre = productos.Nombre;
             producto.Descripcion = productos.Descripcion;
@@ -63,6 +74,18 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult AgregarTamañoPrecio(int Id, TamañoPrecio tamañoPrecio)
         {
+            if (!ModelState.IsValid)
+            {
+                var Producto = _dbEntities.Productos.First(o => o.Id == Id);
+                ModelState.AddModelError("Agregar", "Rellene los datos");
+                return View("AgregarTamañoPrecio", Producto);
+            }
+            if (tamañoPrecio.Precio <= 0)
+            {
+                var Producto = _dbEntities.Productos.First(o => o.Id == Id);
+                ModelState.AddModelError("Agregar", "Rellene los datos");
+                return View("AgregarTamañoPrecio", Producto);
+            }
             TamañoPrecio tamañoPrecio1 = new TamañoPrecio();
             tamañoPrecio1.IdProducto = Id;
             tamañoPrecio1.TamañoProducto = tamañoPrecio.TamañoProducto;
@@ -82,6 +105,18 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult EditarTamañoPrecio(int Id, TamañoPrecio tamañoPrecio)
         {
+            if (!ModelState.IsValid)
+            {
+                TamañoPrecio tamañoPrecioo = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
+                ViewBag.Producto = _dbEntities.Productos.First(o => o.Id == tamañoPrecioo.IdProducto);
+                return View("EditarTamañoPrecio", tamañoPrecio);
+            }
+            if (tamañoPrecio.Precio < 0)
+            {
+                TamañoPrecio tamañoPrecioo = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
+                ViewBag.Producto = _dbEntities.Productos.First(o => o.Id == tamañoPrecioo.IdProducto);
+                return View("EditarTamañoPrecio", tamañoPrecio);
+            }
             TamañoPrecio tamañoPrecio1 = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
             tamañoPrecio1.TamañoProducto = tamañoPrecio.TamañoProducto;
             tamañoPrecio1.Precio = tamañoPrecio.Precio;

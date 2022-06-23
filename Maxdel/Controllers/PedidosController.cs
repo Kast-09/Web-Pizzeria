@@ -1,9 +1,11 @@
 ﻿using Maxdel.DB;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Maxdel.Controllers
 {
+    [Authorize]
     public class PedidosController : Controller
     {
         private readonly DbEntities _dbEntities;
@@ -74,6 +76,22 @@ namespace Maxdel.Controllers
 
         public IActionResult ActualizarEstado(int id, int estado, int retorno)
         {
+            if (id > 6 || id < 1)
+            {
+                ModelState.AddModelError("Estado", "Estado Erroneo");
+                if (retorno == 1)
+                {
+                    return RedirectToAction("Espera");
+                }
+                else if (retorno == 2)
+                {
+                    return RedirectToAction("Entregado");
+                }
+                else
+                {
+                    return RedirectToAction("Anulado");
+                }
+            }
             var pedidos = _dbEntities.pedidos.Where(o => o.IdBoleta == id).ToList();
 
             for(int i = 0; i < pedidos.Count; i++)

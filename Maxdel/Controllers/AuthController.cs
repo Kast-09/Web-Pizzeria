@@ -7,6 +7,8 @@ using Maxdel.DB.Mapping;
 using Maxdel.Models;
 using Maxdel.ViewModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Maxdel.Controllers
 {
@@ -18,6 +20,22 @@ namespace Maxdel.Controllers
         {
             _dbEntities = dbEntities;
         }
+
+        public static string Convertirsha256(string texto)
+        {
+            StringBuilder Sb = new StringBuilder();
+            using (SHA256 hash = SHA256Managed.Create())
+            {
+                Encoding enc = Encoding.UTF8;
+                byte[] result = hash.ComputeHash(enc.GetBytes(texto));
+                foreach (byte b in result)
+                    Sb.Append(b.ToString("x2"));
+
+            }
+
+            return Sb.ToString();
+        }
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -27,6 +45,10 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult Login(string correo, string contraseña)
         {
+            if(correo == null || correo == "" || contraseña == null || contraseña == "")
+            {
+                return View("Login");
+            }
             if (_dbEntities.usuarios.Any(x => x.Correo == correo && x.Contraseña == contraseña))
             {
                 var claims = new List<Claim>()
@@ -48,9 +70,7 @@ namespace Maxdel.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }                
-            }
-            if (correo == null) ModelState.AddModelError("Correo", "El campo correo no puede ser vacío.");
-            else if (contraseña == null) ModelState.AddModelError("Contraseña", "El campo contraseña no puede ser vacío.");
+            }            
             else ModelState.AddModelError("AuthError", "Usuario y/o contraseña erronea");
             return View();
         }
@@ -59,7 +79,7 @@ namespace Maxdel.Controllers
         public IActionResult Register()
         {
             ViewBag.PreguntasSeguridad = _dbEntities.preguntaSeguridads.ToList();
-            return View();
+            return View(new RegistroClaseIntermedia());
         }
 
         [HttpPost]
@@ -76,9 +96,9 @@ namespace Maxdel.Controllers
                 user.Apellido = account.Apellidos;
                 user.NroCelular = account.NroCelular;
                 user.Correo = account.correo;
-                user.Contraseña = account.contraseña;
+                user.Contraseña = Convertirsha256(account.contraseña);
                 user.IdPreguntaSeguridad = account.IdPreguntaSeguridad;
-                user.RespuestaPS = account.RespuestaPS;
+                user.RespuestaPS = Convertirsha256(account.RespuestaPS);
                 direcciones.IdUsuario = _dbEntities.usuarios.OrderBy(o => o.Id).Last().Id + 1;
                 direcciones.Direccion = account.Direccion;
                 direcciones.Referencia = account.Referencia;
@@ -87,6 +107,7 @@ namespace Maxdel.Controllers
                 _dbEntities.SaveChanges();
                 return RedirectToAction("Login");
             }
+            ViewBag.PreguntasSeguridad = _dbEntities.preguntaSeguridads.ToList();
             return View("Register", account);
         }
         [HttpGet]
@@ -97,6 +118,10 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult Correo(string correo)
         {
+            if (!ModelState.IsValid)
+            {                
+                return View("Correo");
+            }
             Usuario? user = _dbEntities.usuarios.FirstOrDefault(o => o.Correo == correo);
             if (user != null)
             {
@@ -115,6 +140,13 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult PreguntaSeguridad(int Id, int IdPreguntaSeguridad, string RespuestaPS)
         {
+            if (Id == null || IdPreguntaSeguridad == null || RespuestaPS == null || RespuestaPS == "")
+            {
+                ViewBag.PreguntasSeguridad = _dbEntities.preguntaSeguridads.ToList();
+                ViewBag.Id = Id;
+                ModelState.AddModelError("Vacio", "Las campos no pueden ser vacíos");
+                return View("PreguntaSeguridad", Id);
+            }
             if (_dbEntities.usuarios.Any(o => o.Id == Id
                        && o.IdPreguntaSeguridad == IdPreguntaSeguridad
                        && o.RespuestaPS == RespuestaPS))
@@ -133,6 +165,12 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult ActualizarContraseña(int Id, string contraseña, string contraseñaV)
         {
+            if(Id == null || contraseña == null || contraseña == "" || contraseñaV == null || contraseñaV == "")
+            {
+                ModelState.AddModelError("Vacio", "Las campos no pueden ser vacíos");
+                ViewBag.Id = Id;
+                return View("ActualizarContraseña", Id);
+            }
             if(contraseña == contraseñaV)
             {
                 Usuario user = _dbEntities.usuarios.First(o => o.Id == Id);

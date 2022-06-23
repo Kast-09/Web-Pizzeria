@@ -1,4 +1,6 @@
-﻿namespace Maxdel.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Maxdel.ViewModels
 {
     public class RegistroClaseIntermedia
     {

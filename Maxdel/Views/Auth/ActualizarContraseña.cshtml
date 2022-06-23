@@ -1,15 +1,18 @@
 ﻿<body>
-    <h1>Actualizar Contraseña</h1>
+    <h1>Actualizar Contraseña</h1>    
+    @Html.ValidationMessage("Vacio")
     @Html.ValidationMessage("contraseñas")
     <div class="container">
         <form action="/Auth/ActualizarContraseña?Id=@ViewBag.Id" method="post">
             <div class="form-outline mb-4">
                 <label class="form-label" for="contraseña">Contraseña Nueva: </label>
                 <input type="password" name="contraseña" id="contraseña" class="form-control form-control-lg" />
+                @Html.ValidationMessage("contraseña")
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="contraseñaV">Verificar Contraseña: </label>
                 <input type="password" name="contraseñaV" id="contraseñaV" class="form-control form-control-lg" />
+                @Html.ValidationMessage("contraseñaV")
             </div>
             <button type="submit" class="btn btn-dark btn-primary">Actualizar</button>
             <a href="/Auth/Login" class="btn btn-link">Cancelar</a>
