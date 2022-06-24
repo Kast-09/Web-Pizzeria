@@ -1,4 +1,5 @@
 ﻿using Maxdel.DB;
+using Maxdel.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,11 +18,21 @@ namespace Maxdel.Controllers
 
         public IActionResult Index()
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             return View();
         }
 
         public IActionResult Espera()
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             ViewBag.Boletas = _dbEntities.boletas
                                 .Include("Pedidos")
                                 .Include("Pedidos.EstadoFK")
@@ -40,6 +51,11 @@ namespace Maxdel.Controllers
 
         public IActionResult Entregado()
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             ViewBag.Boletas = _dbEntities.boletas
                                 .Include("Pedidos")
                                 .Include("Pedidos.EstadoFK")
@@ -58,6 +74,11 @@ namespace Maxdel.Controllers
 
         public IActionResult Anulado()
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             ViewBag.Boletas = _dbEntities.boletas
                                 .Include("Pedidos")
                                 .Include("Pedidos.EstadoFK")
@@ -76,6 +97,11 @@ namespace Maxdel.Controllers
 
         public IActionResult ActualizarEstado(int id, int estado, int retorno)
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             if (id > 6 || id < 1)
             {
                 ModelState.AddModelError("Estado", "Estado Erroneo");
@@ -112,6 +138,13 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Anulado");
             }
+        }
+
+        private Usuario GetLoggedUser()
+        {
+            var claim = HttpContext.User.Claims.First();
+            string username = claim.Value;
+            return _dbEntities.usuarios.First(o => o.Correo == username);
         }
     }
 }

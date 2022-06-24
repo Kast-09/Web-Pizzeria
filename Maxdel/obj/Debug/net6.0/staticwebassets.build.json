@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cMNbPUbFeLUUIPCxfyJbVrQfLdCG+gh7MKjHgDrxwHA=",
+  "Hash": "8f8LIVAoydLXymUWwkopE3UPVDT4aRxpERtgMTFO2i8=",
   "Source": "Maxdel",
   "BasePath": "_content/Maxdel",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\Style.css"
+    },
+    {
+      "Identity": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\css\\StyleError.css",
+      "SourceId": "Maxdel",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\",
+      "BasePath": "_content/Maxdel",
+      "RelativePath": "css/StyleError.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StyleError.css"
     },
     {
       "Identity": "D:\\ALGORITMOS\\source\\repos\\Web Pizzeria\\Maxdel\\wwwroot\\favicon.ico",

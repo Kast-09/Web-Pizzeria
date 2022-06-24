@@ -18,6 +18,11 @@ namespace Maxdel.Controllers
 
         public IActionResult Index()
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             var ListaProductos = _dbEntities.Productos
                                         .Include("TamañoPrecios")
                                         .ToList();
@@ -27,6 +32,11 @@ namespace Maxdel.Controllers
         [HttpGet]
         public IActionResult AgregarProducto()
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             return View();
         }
         [HttpPost]
@@ -45,6 +55,11 @@ namespace Maxdel.Controllers
         [HttpGet]
         public IActionResult EditarProducto(int Id)
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             var Producto = _dbEntities.Productos.First(o => o.Id == Id);
             return View(Producto);
         }
@@ -68,6 +83,11 @@ namespace Maxdel.Controllers
         [HttpGet]
         public IActionResult AgregarTamañoPrecio(int Id)
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             var Producto = _dbEntities.Productos.First(o => o.Id == Id);
             return View(Producto);
         }
@@ -98,6 +118,11 @@ namespace Maxdel.Controllers
         [HttpGet]
         public IActionResult EditarTamañoPrecio(int Id)
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             TamañoPrecio tamañoPrecio = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
             ViewBag.Producto = _dbEntities.Productos.First(o => o.Id == tamañoPrecio.IdProducto);
             return View(tamañoPrecio);
@@ -125,10 +150,22 @@ namespace Maxdel.Controllers
         }
         public IActionResult EliminarTamañoPrecio(int Id)
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             var precioTam = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
             _dbEntities.tamañoPrecios.Remove(precioTam);
             _dbEntities.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private Usuario GetLoggedUser()
+        {
+            var claim = HttpContext.User.Claims.First();
+            string username = claim.Value;
+            return _dbEntities.usuarios.First(o => o.Correo == username);
         }
     }
 }

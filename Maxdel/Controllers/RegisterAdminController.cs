@@ -21,6 +21,11 @@ namespace Maxdel.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            int IdRol = GetLoggedUser().IdRol;
+            if (IdRol != 1)
+            {
+                return RedirectToAction("Index", "Excepcion");
+            }
             ViewBag.PreguntasSeguridad = _dbEntities.preguntaSeguridads.ToList();
             return View();
         }
@@ -62,6 +67,13 @@ namespace Maxdel.Controllers
             }
 
             return Sb.ToString();
+        }
+
+        private Usuario GetLoggedUser()
+        {
+            var claim = HttpContext.User.Claims.First();
+            string username = claim.Value;
+            return _dbEntities.usuarios.First(o => o.Correo == username);
         }
     }
 }

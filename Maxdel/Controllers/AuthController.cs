@@ -49,6 +49,7 @@ namespace Maxdel.Controllers
             {
                 return View("Login");
             }
+            contraseña = Convertirsha256(contraseña);
             if (_dbEntities.usuarios.Any(x => x.Correo == correo && x.Contraseña == contraseña))
             {
                 var claims = new List<Claim>()
@@ -174,7 +175,7 @@ namespace Maxdel.Controllers
             if(contraseña == contraseñaV)
             {
                 Usuario user = _dbEntities.usuarios.First(o => o.Id == Id);
-                user.Contraseña = contraseña;
+                user.Contraseña = Convertirsha256(contraseña);
                 _dbEntities.SaveChanges(); 
                 ModelState.AddModelError("Actualizar", "Contraseña actualizada");
                 return RedirectToAction("Login", "Auth");

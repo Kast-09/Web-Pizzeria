@@ -79,9 +79,10 @@
                     <th>Acción</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody>                
+                @{int id = 0;}
                 @foreach(var detalle in (List<DetallePedido>)ViewBag.Cesta)
-                {                    
+                {
                     <tr>
                         <td>
                             @foreach(var producto in (List<Productos>)ViewBag.productos)
@@ -97,7 +98,7 @@
                                               />
                                           <div class="ms-3">
                                               <p class="fw-bold mb-1">@producto.Nombre</p>                        
-                                              <p class="text-muted mb-0">@producto.Descripcion</p>
+                                              <p class="text-muted mb-0">@producto.Descripcion</p><br />
                                           </div>
                                     </div>break;
                                 }
@@ -110,10 +111,19 @@
                             <p>@detalle.Cantidad</p>
                         </td>
                         <td>
-                            <a href="#">Actualizar</a><br/>
-                            <a href="#">Eliminar</a>
+                            
+                            @{int aux = 0;}
+                            @foreach(var ids in ViewBag.ids)
+                            {
+                                if(id == aux){
+                                    <a href="/Vender/EliminarPedido?Id=@id">Eliminar</a>
+                                }
+                                aux++;
+                            }
+                            
                         </td>
                     </tr>
+                    id++;
                 }
             </tbody>
         </table>
