@@ -7,22 +7,24 @@ using Maxdel.Models;
 using System.Text;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Maxdel.Repositorio;
 
 namespace Maxdel.Controllers
 {
     public class MenuController : Controller
     {
         private readonly DbEntities _dbEntities;
+        private readonly IMenuRepositorio menuRepositorio;
 
-        public MenuController(DbEntities dbEntities)
+        public MenuController(DbEntities dbEntities, IMenuRepositorio menuRepositorio)
         {
             _dbEntities = dbEntities;
+            this.menuRepositorio = menuRepositorio;
         }
 
         public IActionResult Index(string buscar)
         {
-            //string aux = Regex.Replace(buscar.Normalize(NormalizationForm.FormD), @"[^a-zA-z0-9 ]+", "");
-            var ListaProductos = _dbEntities.Productos.ToList();
+            var ListaProductos = menuRepositorio.listarProductos();
             if (buscar != null && buscar != "")
             {
                 ListaProductos = ListaProductos.Where(o => o.Nombre.Contains(buscar, StringComparison.OrdinalIgnoreCase) || o.Descripcion.Contains(buscar, StringComparison.OrdinalIgnoreCase)).OrderBy(o => o.Nombre).ToList();

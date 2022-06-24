@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 using System.Text;
+using Maxdel.Repositorio;
 
 namespace Maxdel.Controllers
 {
@@ -12,10 +13,12 @@ namespace Maxdel.Controllers
     public class RegisterAdminController : Controller
     {
         private readonly DbEntities _dbEntities;
+        private readonly IRegisterAdminRepositorio registerAdminRepositorio;
 
-        public RegisterAdminController(DbEntities dbEntities)
+        public RegisterAdminController(DbEntities dbEntities, IRegisterAdminRepositorio registerAdminRepositorio)
         {
             _dbEntities = dbEntities;
+            this.registerAdminRepositorio = registerAdminRepositorio;
         }
 
         [HttpGet]
@@ -26,31 +29,20 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Index", "Excepcion");
             }
-            ViewBag.PreguntasSeguridad = _dbEntities.preguntaSeguridads.ToList();
+            ViewBag.PreguntasSeguridad = registerAdminRepositorio.listarPreguntas();
             return View();
         }
 
         [HttpPost]
         public IActionResult Register(AgregarAdminClaseIntermedia account) // POST
         {
-            Usuario user = new Usuario();
-
             if (ModelState.IsValid)
             {
-                user.IdRol = 1;
-                user.Nombre = account.Nombre;
-                user.Apellido = account.Apellido;
-                user.NroCelular = account.NroCelular;
-                user.Correo = account.Correo;
-                user.Contraseña = Convertirsha256(account.Contraseña);
-                user.DNI = account.DNI;
-                user.IdPreguntaSeguridad = account.IdPreguntaSeguridad;
-                user.RespuestaPS = account.RespuestaPS;
-                _dbEntities.usuarios.Add(user);
-                _dbEntities.SaveChanges();
+                account.Contraseña = Convertirsha256(account.Contraseña);
+                registerAdminRepositorio.guardarUser(account);
                 return RedirectToAction("Index","HomeAdmin");
             }
-            ViewBag.PreguntasSeguridad = _dbEntities.preguntaSeguridads.ToList();
+            ViewBag.PreguntasSeguridad = registerAdminRepositorio.listarPreguntas();
             return View("Register");
         }
 
@@ -73,7 +65,7 @@ namespace Maxdel.Controllers
         {
             var claim = HttpContext.User.Claims.First();
             string username = claim.Value;
-            return _dbEntities.usuarios.First(o => o.Correo == username);
+            return registerAdminRepositorio.obtenerUsuario(username);
         }
     }
 }

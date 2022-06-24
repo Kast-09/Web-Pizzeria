@@ -9,16 +9,19 @@ using Maxdel.ViewModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Text;
 using System.Security.Cryptography;
+using Maxdel.Repositorio;
 
 namespace Maxdel.Controllers
 {
     public class AuthController : Controller
     {
-        private DbEntities _dbEntities;
+        private readonly DbEntities _dbEntities;
+        private readonly IAuthRepositorio authRepositorio;
 
-        public AuthController(DbEntities dbEntities)
+        public AuthController(DbEntities dbEntities, IAuthRepositorio authRepositorio)
         {
             _dbEntities = dbEntities;
+            this.authRepositorio = authRepositorio;
         }
 
         public static string Convertirsha256(string texto)
@@ -50,7 +53,7 @@ namespace Maxdel.Controllers
                 return View("Login");
             }
             contraseña = Convertirsha256(contraseña);
-            if (_dbEntities.usuarios.Any(x => x.Correo == correo && x.Contraseña == contraseña))
+            if (authRepositorio.verificar(correo, contraseña))
             {
                 var claims = new List<Claim>()
                 {
@@ -61,9 +64,9 @@ namespace Maxdel.Controllers
 
                 HttpContext.SignInAsync(claimsPrincipal);
 
-                var usuario = _dbEntities.usuarios.First(x => x.Correo == correo && x.Contraseña == contraseña);
+                var usuario = authRepositorio.obtenerUsuario(correo, contraseña);
 
-                if(usuario.IdRol == 1)
+                if (usuario.IdRol == 1)
                 {
                     return RedirectToAction("Index", "HomeAdmin");
                 }
@@ -79,14 +82,14 @@ namespace Maxdel.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            ViewBag.PreguntasSeguridad = _dbEntities.preguntaSeguridads.ToList();
+            ViewBag.PreguntasSeguridad = authRepositorio.obtenerPreguntas();
             return View(new RegistroClaseIntermedia());
         }
 
         [HttpPost]
         public IActionResult Register(RegistroClaseIntermedia account) // POST
         {
-            int aux = _dbEntities.usuarios.Count();
+            int aux = authRepositorio.contarUsuarios();
             Usuario user = new Usuario();
             Direcciones direcciones = new Direcciones();
 
@@ -99,13 +102,11 @@ namespace Maxdel.Controllers
                 user.Correo = account.correo;
                 user.Contraseña = Convertirsha256(account.contraseña);
                 user.IdPreguntaSeguridad = account.IdPreguntaSeguridad;
-                user.RespuestaPS = Convertirsha256(account.RespuestaPS);
-                direcciones.IdUsuario = _dbEntities.usuarios.OrderBy(o => o.Id).Last().Id + 1;
+                user.RespuestaPS = account.RespuestaPS;
+                direcciones.IdUsuario = authRepositorio.obtenerUltimoUsuaro();
                 direcciones.Direccion = account.Direccion;
                 direcciones.Referencia = account.Referencia;
-                _dbEntities.usuarios.Add(user);
-                _dbEntities.direcciones.Add(direcciones);
-                _dbEntities.SaveChanges();
+                authRepositorio.registrar(user, direcciones);
                 return RedirectToAction("Login");
             }
             ViewBag.PreguntasSeguridad = _dbEntities.preguntaSeguridads.ToList();
@@ -123,7 +124,7 @@ namespace Maxdel.Controllers
             {                
                 return View("Correo");
             }
-            Usuario? user = _dbEntities.usuarios.FirstOrDefault(o => o.Correo == correo);
+            Usuario? user = authRepositorio.obtenerUsuario(correo);
             if (user != null)
             {
                 return RedirectToAction("PreguntaSeguridad", new { Id = user.Id });
@@ -148,9 +149,7 @@ namespace Maxdel.Controllers
                 ModelState.AddModelError("Vacio", "Las campos no pueden ser vacíos");
                 return View("PreguntaSeguridad", Id);
             }
-            if (_dbEntities.usuarios.Any(o => o.Id == Id
-                       && o.IdPreguntaSeguridad == IdPreguntaSeguridad
-                       && o.RespuestaPS == RespuestaPS))
+            if (authRepositorio.verificarPreguntaSeguridad(Id, IdPreguntaSeguridad, RespuestaPS))
             {
                 return RedirectToAction("ActualizarContraseña", new { Id = Id });
             }
@@ -174,9 +173,8 @@ namespace Maxdel.Controllers
             }
             if(contraseña == contraseñaV)
             {
-                Usuario user = _dbEntities.usuarios.First(o => o.Id == Id);
-                user.Contraseña = Convertirsha256(contraseña);
-                _dbEntities.SaveChanges(); 
+                contraseña = Convertirsha256(contraseña);
+                authRepositorio.actualizarUsuario(Id, contraseña);
                 ModelState.AddModelError("Actualizar", "Contraseña actualizada");
                 return RedirectToAction("Login", "Auth");
             }

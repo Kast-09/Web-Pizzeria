@@ -19,7 +19,18 @@ builder.Services.AddDbContext<DbEntities>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("Pizzeria"))
 );
 
+builder.Services.AddTransient<IAuthRepositorio, AuthRepositorio>();
+builder.Services.AddTransient<IHomeAdminRepositorio, HomeAdminRepositorio>();
 builder.Services.AddTransient<IHomeRepositorio, HomeRepositorio>();
+builder.Services.AddTransient<IMenuRepositorio, MenuRepositorio>();
+builder.Services.AddTransient<IPedidosRepositorio, PedidosRepositorio>();
+builder.Services.AddTransient<IPersonaRepositorio, PersonaRepositorio>();
+builder.Services.AddTransient<IProcesarCompraRepositorio, ProcesarCompraRepositorio>();
+builder.Services.AddTransient<IProductosRepositorios, ProductosRepositorios>();
+builder.Services.AddTransient<IRegisterAdminRepositorio, RegisterAdminRepositorio>();
+builder.Services.AddTransient<ITrackingRepositorio, TrackingRepositorio>();
+builder.Services.AddTransient<IVenderRepositorio, VenderRepositorio>();
+builder.Services.AddTransient<IVentasRepositorio, VentasRepositorio>();
 
 var app = builder.Build();
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Maxdel.Models;
 using Maxdel.DB;
+using Maxdel.Repositorio;
 
 namespace Maxdel.Controllers
 {
@@ -9,10 +10,12 @@ namespace Maxdel.Controllers
     public class HomeAdminController : Controller
     {
         private readonly DbEntities _dbEntities;
+        private readonly IHomeAdminRepositorio homeAdminRepositorio;
 
-        public HomeAdminController (DbEntities dbEntities)
+        public HomeAdminController (DbEntities dbEntities, IHomeAdminRepositorio homeAdminRepositorio)
         {
             _dbEntities = dbEntities;
+            this.homeAdminRepositorio = homeAdminRepositorio;
         }
 
         public IActionResult Index()
@@ -29,7 +32,7 @@ namespace Maxdel.Controllers
         {
             var claim = HttpContext.User.Claims.First();
             string username = claim.Value;
-            return _dbEntities.usuarios.First(o => o.Correo == username);
+            return homeAdminRepositorio.obtenerUsuario(username);
         }
     }
 }

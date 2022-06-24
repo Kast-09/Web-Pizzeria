@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Maxdel.Models;
 using Maxdel.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Maxdel.Repositorio;
 
 namespace Maxdel.Controllers
 {
@@ -12,15 +13,17 @@ namespace Maxdel.Controllers
     {
 
         private readonly DbEntities _dbEntities;
+        private readonly IVenderRepositorio venderRepositorio;
 
         public static List<Pedido>? Pedidos = new List<Pedido>();
         public static List<DetallePedido>? DetallePedidos = new List<DetallePedido>();
         public static int cantPedidos = 0;
         public static int cont = 0;
 
-        public VenderController(DbEntities dbEntities)
+        public VenderController(DbEntities dbEntities, IVenderRepositorio venderRepositorio)
         {
             _dbEntities = dbEntities;
+            this.venderRepositorio = venderRepositorio;
         }
 
         public IActionResult Index(string buscar)
@@ -30,9 +33,7 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Index", "Excepcion");
             }
-            var ListaProductos = _dbEntities.Productos
-                                        .Include("TamañoPrecios")
-                                        .ToList();
+            var ListaProductos = venderRepositorio.obtenerProductos();
 
             if (buscar != null && buscar != "")
             {
@@ -47,7 +48,7 @@ namespace Maxdel.Controllers
             foreach(var item in DetallePedidos)
             {
                 ids.Add(item.Id);
-                var detalle = _dbEntities.Productos.FirstOrDefault(o => o.Id == item.IdProducto);
+                var detalle = venderRepositorio.obtenerProducto(item.IdProducto);
                 productos.Add(detalle);
             }
 
@@ -57,7 +58,21 @@ namespace Maxdel.Controllers
 
             ViewBag.ids = ids;
 
+            ViewBag.Monto = obtenerMonto();
+
             return View(ListaProductos);
+        }
+
+        public decimal obtenerMonto()
+        {
+            decimal monto = 0;
+
+            foreach (var item in DetallePedidos)
+            {
+                monto += item.precio * item.Cantidad;
+            }
+
+            return monto;
         }
 
         public IActionResult AgregarPedido(int IdProducto, int IdTamañoPrecio, int Cantidad)
@@ -73,7 +88,7 @@ namespace Maxdel.Controllers
             }
             Pedido pedido = new Pedido();
             DetallePedido detallePedido = new DetallePedido();
-            cantPedidos = _dbEntities.pedidos.OrderBy(o => o.Id).Last().Id;
+            cantPedidos = venderRepositorio.obtenerUltimoId();
             int aux = 0;
             if(Pedidos.Count == 0)
             {
@@ -92,7 +107,7 @@ namespace Maxdel.Controllers
             detallePedido.IdPedido = cantPedidos;
             detallePedido.IdTamañoPrecio = IdTamañoPrecio;
             detallePedido.Cantidad = Cantidad;
-            TamañoPrecio tamañoPrecio = _dbEntities.tamañoPrecios.First(o => o.Id == detallePedido.IdTamañoPrecio);
+            TamañoPrecio tamañoPrecio = venderRepositorio.obtenerDetalle(detallePedido.IdTamañoPrecio);
             detallePedido.TamañoProducto = tamañoPrecio.TamañoProducto;
             detallePedido.precio = tamañoPrecio.Precio;
             DetallePedidos.Add(detallePedido);
@@ -136,16 +151,9 @@ namespace Maxdel.Controllers
                 return RedirectToAction("Index");
             }
 
-            Usuario usuario = new Usuario();
-            usuario.IdRol = 3;
-            usuario.Nombre = cliente.Nombre;
-            usuario.Apellido = cliente.Apellido;
-            usuario.DNI = cliente.DNI;
+            venderRepositorio.agregarUsuario(cliente);
 
-            _dbEntities.usuarios.Add(usuario);
-            _dbEntities.SaveChanges();
-
-            int idUser = _dbEntities.usuarios.OrderBy(o => o.Id).Last().Id;
+            int idUser = venderRepositorio.obtenerUltimoIdUser();
 
             int IdBoleta = generarNroBoleta(cliente.Direccion);
             for (int i = 0; i < Pedidos.Count; i++)
@@ -156,9 +164,8 @@ namespace Maxdel.Controllers
                 Pedidos[i].Estado = 2;
                 Pedidos[i].IdBoleta = IdBoleta;
             }
-            _dbEntities.pedidos.AddRange(Pedidos);
-            _dbEntities.detallePedidos.AddRange(DetallePedidos);
-            _dbEntities.SaveChanges();
+
+            venderRepositorio.agregarDatosBd(Pedidos, DetallePedidos);
 
             DetallePedidos.Clear();
             Pedidos.Clear();
@@ -170,7 +177,7 @@ namespace Maxdel.Controllers
         {
             string nroBoleta = "001-";
             int aux2;
-            int nroTemp = _dbEntities.boletas.Count();
+            int nroTemp = venderRepositorio.contarBoletas();
             nroTemp++;
             string aux = nroTemp.ToString();
             nroTemp = aux.Length;
@@ -183,25 +190,18 @@ namespace Maxdel.Controllers
 
             DateTime fecha = DateTime.Now;
 
-            int Id = _dbEntities.usuarios.OrderBy(o => o.Id).Last().Id;
-            decimal monto = 0;
-
-            for (int i = 0; i < DetallePedidos.Count; i++)
-            {
-                monto += DetallePedidos[i].precio;
-            }
-
+            int Id = venderRepositorio.obtenerUltimoIdUser();
+            
             Boleta boleta = new Boleta();
             boleta.Fecha = fecha;
             boleta.NroBoleta = nroBoleta;
-            boleta.MontoTotal = monto;
+            boleta.MontoTotal = obtenerMonto();
             boleta.Direccion = destino;
             boleta.IdUsuario = Id;
 
-            _dbEntities.boletas.Add(boleta);
-            _dbEntities.SaveChanges();
+            venderRepositorio.agregarBoleta(boleta);
 
-            aux2 = _dbEntities.boletas.OrderBy(o => o.Id).Last().Id;
+            aux2 = venderRepositorio.obtenerUltimoIdBoleta();
 
             return aux2;
         }
@@ -209,7 +209,7 @@ namespace Maxdel.Controllers
         {
             var claim = HttpContext.User.Claims.First();
             string username = claim.Value;
-            return _dbEntities.usuarios.First(o => o.Correo == username);
+            return venderRepositorio.obtenerUsuario(username);
         }
     }
 }

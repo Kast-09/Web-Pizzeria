@@ -18,16 +18,16 @@ namespace MaxdelTest.Controllers
     {
         private readonly IHomeRepositorio _homeRepositorio;
 
-        [Test]
-        public void IndexViewCase01()
-        {
-            var mockController = new Mock<IHomeRepositorio>();
+        //[Test]
+        //public void IndexViewCase01()
+        //{
+        //    var mockController = new Mock<IHomeRepositorio>();
 
-            var controller = new HomeController(null, mockController.Object);
-            var view = controller.Index();
+        //    var controller = new HomeController(null, mockController.Object);
+        //    var view = controller.Index();
 
-            Assert.IsNotNull(view);
-        }
+        //    Assert.IsNotNull(view);
+        //}
 
         //[Test]
         //public void CestaView()
@@ -40,16 +40,16 @@ namespace MaxdelTest.Controllers
         //    Assert.IsNotNull(ResultadoC);
         //}
 
-        [Test]
-        public void AboutViewCase01()
-        {
-            var mockController = new Mock<IHomeRepositorio>();
+        //[Test]
+        //public void AboutViewCase01()
+        //{
+        //    var mockController = new Mock<IHomeRepositorio>();
 
-            var controller = new HomeController(null, mockController.Object);
-            var view = controller.About();
+        //    var controller = new HomeController(null, mockController.Object);
+        //    var view = controller.About();
 
-            Assert.IsNotNull(view);
-        }
+        //    Assert.IsNotNull(view);
+        //}
 
         //[Test]
         //public void MenuViewCase01()

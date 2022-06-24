@@ -2,16 +2,19 @@
 using Maxdel.DB;
 using Microsoft.EntityFrameworkCore;
 using Maxdel.Models;
+using Maxdel.Repositorio;
 
 namespace Maxdel.Controllers
 {
     public class TrackingController : Controller
     {
-        DbEntities _dbEntities;
+        private readonly DbEntities _dbEntities;
+        private readonly ITrackingRepositorio trackingRepositorio;
 
-        public TrackingController(DbEntities dbEntities)
+        public TrackingController(DbEntities dbEntities, ITrackingRepositorio trackingRepositorio)
         {
             _dbEntities = dbEntities;
+            this.trackingRepositorio = trackingRepositorio;
         }
 
         public IActionResult Index()
@@ -24,10 +27,7 @@ namespace Maxdel.Controllers
             {
                 return View("Index");
             }
-            var detallePedido = _dbEntities.detallePedidos
-                                           .Include(o => o.Pedido)
-                                           .Include(o => o.Producto)
-                                           .FirstOrDefault(o => o.Pedido.CodTracking == CodTracking);
+            var detallePedido = trackingRepositorio.obtenerEstado(CodTracking);
             ViewBag.CodTracking = CodTracking;
             if(detallePedido != null)
             {

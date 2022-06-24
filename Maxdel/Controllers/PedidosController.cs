@@ -3,6 +3,7 @@ using Maxdel.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Maxdel.Repositorio;
 
 namespace Maxdel.Controllers
 {
@@ -10,10 +11,12 @@ namespace Maxdel.Controllers
     public class PedidosController : Controller
     {
         private readonly DbEntities _dbEntities;
+        private readonly IPedidosRepositorio pedidosRepositorio;
 
-        public PedidosController(DbEntities dbEntities)
+        public PedidosController(DbEntities dbEntities, IPedidosRepositorio pedidosRepositorio)
         {
             _dbEntities = dbEntities;
+            this.pedidosRepositorio = pedidosRepositorio;
         }
 
         public IActionResult Index()
@@ -33,12 +36,7 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Index", "Excepcion");
             }
-            ViewBag.Boletas = _dbEntities.boletas
-                                .Include("Pedidos")
-                                .Include("Pedidos.EstadoFK")
-                                .Include("Pedidos.DetallePedidos")
-                                .Include("Pedidos.DetallePedidos.Producto")
-                                .Where(o => o.Pedidos.Any(x => x.Estado >= 2) && o.Pedidos.Any(x => x.Estado <= 4)).ToList();
+            ViewBag.Boletas = pedidosRepositorio.listarEspera();
 
             ViewBag.Estados = _dbEntities.estado.ToList();
 
@@ -56,12 +54,7 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Index", "Excepcion");
             }
-            ViewBag.Boletas = _dbEntities.boletas
-                                .Include("Pedidos")
-                                .Include("Pedidos.EstadoFK")
-                                .Include("Pedidos.DetallePedidos")
-                                .Include("Pedidos.DetallePedidos.Producto")
-                                .Where(o => o.Pedidos.Any(x => x.Estado == 5)).ToList();
+            ViewBag.Boletas = pedidosRepositorio.listarEntregado();
 
             ViewBag.Estados = _dbEntities.estado.ToList();
 
@@ -79,12 +72,7 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Index", "Excepcion");
             }
-            ViewBag.Boletas = _dbEntities.boletas
-                                .Include("Pedidos")
-                                .Include("Pedidos.EstadoFK")
-                                .Include("Pedidos.DetallePedidos")
-                                .Include("Pedidos.DetallePedidos.Producto")
-                                .Where(o => o.Pedidos.Any(x => x.Estado == 6)).ToList();
+            ViewBag.Boletas = pedidosRepositorio.listarAnulado();
 
             ViewBag.Estados = _dbEntities.estado.ToList();
 
@@ -97,12 +85,7 @@ namespace Maxdel.Controllers
 
         public IActionResult ActualizarEstado(int id, int estado, int retorno)
         {
-            int IdRol = GetLoggedUser().IdRol;
-            if (IdRol != 1)
-            {
-                return RedirectToAction("Index", "Excepcion");
-            }
-            if (id > 6 || id < 1)
+            if (estado > 6 || estado < 1)
             {
                 ModelState.AddModelError("Estado", "Estado Erroneo");
                 if (retorno == 1)
@@ -118,19 +101,18 @@ namespace Maxdel.Controllers
                     return RedirectToAction("Anulado");
                 }
             }
-            var pedidos = _dbEntities.pedidos.Where(o => o.IdBoleta == id).ToList();
+            var pedidos = pedidosRepositorio.listarPedidos(id);
 
-            for(int i = 0; i < pedidos.Count; i++)
+            for (int i = 0; i < pedidos.Count; i++)
             {
                 pedidos[i].Estado = estado;
             }
-            _dbEntities.SaveChanges();
-
-            if(retorno == 1)
+            pedidosRepositorio.actualizarEstado();
+            if (retorno == 1)
             {
                 return RedirectToAction("Espera");
             }
-            else if(retorno == 2)
+            else if (retorno == 2)
             {
                 return RedirectToAction("Entregado");
             }
@@ -144,7 +126,7 @@ namespace Maxdel.Controllers
         {
             var claim = HttpContext.User.Claims.First();
             string username = claim.Value;
-            return _dbEntities.usuarios.First(o => o.Correo == username);
+            return pedidosRepositorio.obtenerUsuario(username);
         }
     }
 }

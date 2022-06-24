@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Maxdel.Models;
+using Maxdel.Repositorio;
 
 namespace Maxdel.Controllers
 {
@@ -10,10 +11,12 @@ namespace Maxdel.Controllers
     public class ProductosController : Controller
     {
         private readonly DbEntities _dbEntities;
+        private readonly IProductosRepositorios productosRepositorios;
 
-        public ProductosController(DbEntities dbEntities)
+        public ProductosController(DbEntities dbEntities, IProductosRepositorios productosRepositorios)
         {
             _dbEntities = dbEntities;
+            this.productosRepositorios = productosRepositorios;
         }
 
         public IActionResult Index()
@@ -23,9 +26,7 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Index", "Excepcion");
             }
-            var ListaProductos = _dbEntities.Productos
-                                        .Include("TamañoPrecios")
-                                        .ToList();
+            var ListaProductos = productosRepositorios.listarProductos();
             return View(ListaProductos);
         }
 
@@ -42,13 +43,12 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult AgregarProducto(Productos productos)
         {
-            if (!ModelState.IsValid)
-            {
-                ModelState.AddModelError("AgregarProducto", "Rellene los datos");
-                return View("AgregarProducto");
-            }
-            _dbEntities.Productos.Add(productos);
-            _dbEntities.SaveChanges();
+            //if (!ModelState.IsValid)
+            //{
+            //    ModelState.AddModelError("AgregarProducto", "Rellene los datos");
+            //    return View("AgregarProducto");
+            //}
+            productosRepositorios.agregarProducto(productos);
             return RedirectToAction("Index");
         }
 
@@ -60,7 +60,7 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Index", "Excepcion");
             }
-            var Producto = _dbEntities.Productos.First(o => o.Id == Id);
+            var Producto = productosRepositorios.obtenerProducto(Id);
             return View(Producto);
         }
         [HttpPost]
@@ -88,30 +88,25 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Index", "Excepcion");
             }
-            var Producto = _dbEntities.Productos.First(o => o.Id == Id);
+            var Producto = productosRepositorios.obtenerProducto(Id);
             return View(Producto);
         }
         [HttpPost]
         public IActionResult AgregarTamañoPrecio(int Id, TamañoPrecio tamañoPrecio)
         {
-            if (!ModelState.IsValid)
+            if (tamañoPrecio.TamañoProducto == null || tamañoPrecio.TamañoProducto == "")
             {
-                var Producto = _dbEntities.Productos.First(o => o.Id == Id);
+                var Producto = productosRepositorios.obtenerProducto(Id);
                 ModelState.AddModelError("Agregar", "Rellene los datos");
                 return View("AgregarTamañoPrecio", Producto);
             }
             if (tamañoPrecio.Precio <= 0)
             {
-                var Producto = _dbEntities.Productos.First(o => o.Id == Id);
+                var Producto = productosRepositorios.obtenerProducto(Id);
                 ModelState.AddModelError("Agregar", "Rellene los datos");
                 return View("AgregarTamañoPrecio", Producto);
             }
-            TamañoPrecio tamañoPrecio1 = new TamañoPrecio();
-            tamañoPrecio1.IdProducto = Id;
-            tamañoPrecio1.TamañoProducto = tamañoPrecio.TamañoProducto;
-            tamañoPrecio1.Precio = tamañoPrecio.Precio;
-            _dbEntities.tamañoPrecios.Add(tamañoPrecio1);
-            _dbEntities.SaveChanges();
+            productosRepositorios.AgregarTamañoPrecio(Id, tamañoPrecio);
             return RedirectToAction("Index");
         }
 
@@ -123,29 +118,26 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Index", "Excepcion");
             }
-            TamañoPrecio tamañoPrecio = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
-            ViewBag.Producto = _dbEntities.Productos.First(o => o.Id == tamañoPrecio.IdProducto);
+            TamañoPrecio tamañoPrecio = productosRepositorios.obtenerTamañoPrecio(Id);
+            ViewBag.Producto = productosRepositorios.obtenerProductoId(tamañoPrecio.IdProducto);
             return View(tamañoPrecio);
         }
         [HttpPost]
         public IActionResult EditarTamañoPrecio(int Id, TamañoPrecio tamañoPrecio)
         {
-            if (!ModelState.IsValid)
-            {
-                TamañoPrecio tamañoPrecioo = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
-                ViewBag.Producto = _dbEntities.Productos.First(o => o.Id == tamañoPrecioo.IdProducto);
-                return View("EditarTamañoPrecio", tamañoPrecio);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    TamañoPrecio tamañoPrecioo = productosRepositorios.obtenerTamañoPrecio(Id);
+            //    ViewBag.Producto = productosRepositorios.obtenerProductoId(tamañoPrecioo.IdProducto);
+            //    return View("EditarTamañoPrecio", tamañoPrecio);
+            //}
             if (tamañoPrecio.Precio < 0)
             {
-                TamañoPrecio tamañoPrecioo = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
-                ViewBag.Producto = _dbEntities.Productos.First(o => o.Id == tamañoPrecioo.IdProducto);
+                TamañoPrecio tamañoPrecioo = productosRepositorios.obtenerTamañoPrecio(Id);
+                ViewBag.Producto = productosRepositorios.obtenerProductoId(tamañoPrecioo.IdProducto);
                 return View("EditarTamañoPrecio", tamañoPrecio);
             }
-            TamañoPrecio tamañoPrecio1 = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
-            tamañoPrecio1.TamañoProducto = tamañoPrecio.TamañoProducto;
-            tamañoPrecio1.Precio = tamañoPrecio.Precio;
-            _dbEntities.SaveChanges();
+            productosRepositorios.editarTamaño(Id, tamañoPrecio.TamañoProducto, tamañoPrecio.Precio);
             return RedirectToAction("Index");
         }
         public IActionResult EliminarTamañoPrecio(int Id)
@@ -155,9 +147,7 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Index", "Excepcion");
             }
-            var precioTam = _dbEntities.tamañoPrecios.First(o => o.Id == Id);
-            _dbEntities.tamañoPrecios.Remove(precioTam);
-            _dbEntities.SaveChanges();
+            productosRepositorios.eliminarTamañoPrecio(Id);
             return RedirectToAction("Index");
         }
 
@@ -165,7 +155,7 @@ namespace Maxdel.Controllers
         {
             var claim = HttpContext.User.Claims.First();
             string username = claim.Value;
-            return _dbEntities.usuarios.First(o => o.Correo == username);
+            return productosRepositorios.obtenerUsuario(username);
         }
     }
 }

@@ -3,6 +3,7 @@ using Maxdel.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Maxdel.Repositorio;
 
 namespace Maxdel.Controllers
 {
@@ -10,10 +11,12 @@ namespace Maxdel.Controllers
     public class VentasController : Controller
     {
         private readonly DbEntities _dbEntities;
+        private readonly IVentasRepositorio ventasRepositorio;
 
-        public VentasController(DbEntities dbEntities)
+        public VentasController(DbEntities dbEntities, IVentasRepositorio ventasRepositorio)
         {
             _dbEntities = dbEntities;
+            this.ventasRepositorio = ventasRepositorio;
         }
 
         public IActionResult Index()
@@ -23,9 +26,7 @@ namespace Maxdel.Controllers
             {
                 return RedirectToAction("Index", "Excepcion");
             }
-            var boletas = _dbEntities.boletas
-                                .Include("Pedidos")
-                                .Where(o => o.Pedidos.Any(x => x.Estado == 5)).ToList();
+            var boletas = ventasRepositorio.listarBoletas();
             
             decimal subtotal = 0;
 
@@ -43,7 +44,7 @@ namespace Maxdel.Controllers
         {
             var claim = HttpContext.User.Claims.First();
             string username = claim.Value;
-            return _dbEntities.usuarios.First(o => o.Correo == username);
+            return ventasRepositorio.obtenerUsuario(username);
         }
     }
 }

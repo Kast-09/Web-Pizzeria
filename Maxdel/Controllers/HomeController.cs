@@ -1,23 +1,11 @@
 ﻿using Maxdel.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Maxdel.DB;
-using Microsoft.EntityFrameworkCore;
-using Maxdel.Repositorio;
 
 namespace Maxdel.Controllers
 {
     public class HomeController : Controller
     {
-        private DbEntities _dbEntities;
-        private readonly IHomeRepositorio _homeRepositorio;
-
-        public HomeController(DbEntities dbEntities, IHomeRepositorio homeRepositorio)
-        {
-            _dbEntities = dbEntities;
-            _homeRepositorio = homeRepositorio;
-        }
-
         public IActionResult Index()
         {
             return View();
