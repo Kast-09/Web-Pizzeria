@@ -13,12 +13,12 @@
         <form action="/Productos/EditarTamañoPrecio?Id=@Model.Id" method="post">
             <div class="mb-3">
                 <label for="TamañoProducto">Tamaño Producto: </label>
-                <input type="text" class="form-control" Name="TamañoProducto" id="TamañoProducto" value="@Model.TamañoProducto">
+                <input type="text" class="form-control" Name="TamañoProducto" id="TamañoProducto" value="@Model.TamañoProducto" required>
                 @Html.ValidationMessage("TamañoProducto")
             </div>
             <div class="mb-3">
                 <label for="Precio">Precio: </label>
-                <input type="number" class="form-control" Name="Precio" id="Precio" step="0.01" min="0" value="@Model.Precio">
+                <input type="number" class="form-control" Name="Precio" id="Precio" step="0.01" min="0" value="@Model.Precio" required>
                 @Html.ValidationMessage("Precio")
             </div>
             <button type="submit" class="btn btn-primary">Editar</button>

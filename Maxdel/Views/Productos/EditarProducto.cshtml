@@ -8,17 +8,17 @@
         <form action="/Productos/EditarProducto?Id=@Model.Id" method="post">
             <div class="mb-3">
                 <label for="Nombre">Nombre: </label>
-                <input type="text" class="form-control" Name="Nombre" id="Nombre" value="@Model.Nombre">
+                <input type="text" class="form-control" Name="Nombre" id="Nombre" value="@Model.Nombre" required>
                 @Html.ValidationMessage("Nombre")
             </div>
             <div class="mb-3">
                 <label for="Descripcion">Descripción: </label>
-                <textarea class="form-control" Name="Descripcion" id="Descripcion" style="height: 100px">@Model.Descripcion</textarea>                
+                <textarea class="form-control" Name="Descripcion" id="Descripcion" style="height: 100px" required>@Model.Descripcion</textarea>                
                 @Html.ValidationMessage("Descripcion")
             </div>
             <div class="mb-3">
                 <label for="UrlImagen">Url Imagen: </label>
-                <input type="text" class="form-control" Name="UrlImagen" id="UrlImagen" value="@Model.UrlImagen">
+                <input type="text" class="form-control" Name="UrlImagen" id="UrlImagen" value="@Model.UrlImagen" required>
                 @Html.ValidationMessage("UrlImagen")
             </div>
             <button class="btn btn-primary">Editar</button>

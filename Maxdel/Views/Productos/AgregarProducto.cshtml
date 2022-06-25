@@ -8,17 +8,17 @@
         <form action="/Productos/AgregarProducto" method="post">
             <div class="mb-3">
                 <label for="Nombre">Nombre: </label>
-                <input type="text" class="form-control" Name="Nombre" id="Nombre">
+                <input type="text" class="form-control" Name="Nombre" id="Nombre" required>
                 @Html.ValidationMessage("Nombre")
             </div>
             <div class="mb-3">
                 <label for="Descripcion">Descripción: </label>
-                <textarea class="form-control" placeholder="Ingrese la descripción" Name="Descripcion" id="Descripcion" style="height: 100px"></textarea>                
+                <textarea class="form-control" placeholder="Ingrese la descripción" Name="Descripcion" id="Descripcion" style="height: 100px" required></textarea>                
                 @Html.ValidationMessage("Descripcion")
             </div>
             <div class="mb-3">
                 <label for="UrlImagen">Url Imagen: </label>
-                <input type="text" class="form-control" Name="UrlImagen" id="UrlImagen">
+                <input type="text" class="form-control" Name="UrlImagen" id="UrlImagen" required>
                 @Html.ValidationMessage("UrlImagen")
             </div>
             <button class="btn btn-primary">Agregar Producto</button>
