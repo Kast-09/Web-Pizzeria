@@ -171,4 +171,5 @@ D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\appsettings.Development.json
 D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\appsettings.json
 D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Views\Shared\_Layout.cshtml.css
 D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Views\Shared\_LayoutAdmin.cshtml.css
+D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Pruebas Selenium\PizzeriaMaxdel.side
 D:\ALGORITMOS\source\repos\Web Pizzeria\Maxdel\Properties\launchSettings.json

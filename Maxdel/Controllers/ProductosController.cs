@@ -43,11 +43,11 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult AgregarProducto(Productos productos)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    ModelState.AddModelError("AgregarProducto", "Rellene los datos");
-            //    return View("AgregarProducto");
-            //}
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("AgregarProducto", "Rellene los datos");
+                return View("AgregarProducto");
+            }
             productosRepositorios.agregarProducto(productos);
             return RedirectToAction("Index");
         }
@@ -66,12 +66,12 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult EditarProducto(int Id, Productos productos)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    var Producto = productosRepositorios.obtenerProducto(Id);
-            //    ModelState.AddModelError("EditarProducto", "Rellene los datos");
-            //    return View("EditarProducto", Producto);
-            //}
+            if (!ModelState.IsValid)
+            {
+                var Producto = productosRepositorios.obtenerProducto(Id);
+                ModelState.AddModelError("EditarProducto", "Rellene los datos");
+                return View("EditarProducto", Producto);
+            }
 
             productosRepositorios.editarProducto(Id, productos);
             return RedirectToAction("Index");
@@ -122,12 +122,12 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult EditarTamañoPrecio(int Id, TamañoPrecio tamañoPrecio)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    TamañoPrecio tamañoPrecioo = productosRepositorios.obtenerTamañoPrecio(Id);
-            //    ViewBag.Producto = productosRepositorios.obtenerProductoId(tamañoPrecioo.IdProducto);
-            //    return View("EditarTamañoPrecio", tamañoPrecio);
-            //}
+            if (!ModelState.IsValid)
+            {
+                TamañoPrecio tamañoPrecioo = productosRepositorios.obtenerTamañoPrecio(Id);
+                ViewBag.Producto = productosRepositorios.obtenerProductoId(tamañoPrecioo.IdProducto);
+                return View("EditarTamañoPrecio", tamañoPrecio);
+            }
             if (tamañoPrecio.Precio < 0)
             {
                 TamañoPrecio tamañoPrecioo = productosRepositorios.obtenerTamañoPrecio(Id);
