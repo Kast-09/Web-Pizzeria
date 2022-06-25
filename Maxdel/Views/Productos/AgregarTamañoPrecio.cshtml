@@ -8,7 +8,7 @@
             <h1 id="@Model.Id">@Model.Nombre</h1>
             <p>@Model.Descripcion</p>
         </div>
-        <h1>Agregar Tamaño Precio: </h1><br />
+        <h1 id="tituloIndex">Agregar Tamaño Precio: </h1><br />
         @Html.ValidationMessage("Agregar")
         <form action="/Productos/AgregarTamañoPrecio?Id=@Model.Id" method="post">
             <div class="mb-3">

@@ -66,17 +66,14 @@ namespace Maxdel.Controllers
         [HttpPost]
         public IActionResult EditarProducto(int Id, Productos productos)
         {
-            if (!ModelState.IsValid)
-            {
-                var Producto = _dbEntities.Productos.First(o => o.Id == Id);
-                ModelState.AddModelError("EditarProducto", "Rellene los datos");
-                return View("EditarProducto", Producto);
-            }
-            var producto = _dbEntities.Productos.First(o => o.Id == Id);
-            producto.Nombre = productos.Nombre;
-            producto.Descripcion = productos.Descripcion;
-            producto.UrlImagen = productos.UrlImagen;
-            _dbEntities.SaveChanges();
+            //if (!ModelState.IsValid)
+            //{
+            //    var Producto = productosRepositorios.obtenerProducto(Id);
+            //    ModelState.AddModelError("EditarProducto", "Rellene los datos");
+            //    return View("EditarProducto", Producto);
+            //}
+
+            productosRepositorios.editarProducto(Id, productos);
             return RedirectToAction("Index");
         }
 
@@ -142,11 +139,6 @@ namespace Maxdel.Controllers
         }
         public IActionResult EliminarTamañoPrecio(int Id)
         {
-            int IdRol = GetLoggedUser().IdRol;
-            if (IdRol != 1)
-            {
-                return RedirectToAction("Index", "Excepcion");
-            }
             productosRepositorios.eliminarTamañoPrecio(Id);
             return RedirectToAction("Index");
         }

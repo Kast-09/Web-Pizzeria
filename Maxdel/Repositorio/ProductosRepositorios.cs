@@ -16,6 +16,7 @@ namespace Maxdel.Repositorio
         void editarTamaño(int Id, string TamañoProducto, decimal Precio);
         void eliminarTamañoPrecio(int Id);
         Usuario obtenerUsuario(string username);
+        void editarProducto(int Id, Productos productos);
     }
     public class ProductosRepositorios : IProductosRepositorios
     {
@@ -90,6 +91,15 @@ namespace Maxdel.Repositorio
         public Usuario obtenerUsuario(string username)
         {
             return _dbEntities.usuarios.First(o => o.Correo == username);
+        }
+
+        public void editarProducto(int Id, Productos productos)
+        {
+            var producto = _dbEntities.Productos.First(o => o.Id == Id);
+            producto.Nombre = productos.Nombre;
+            producto.Descripcion = productos.Descripcion;
+            producto.UrlImagen = productos.UrlImagen;
+            _dbEntities.SaveChanges();
         }
     }
 }

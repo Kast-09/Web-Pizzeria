@@ -144,23 +144,27 @@ namespace Maxdel.Controllers
             {
                 int Id = GetLoggedUser().Id;
 
-                ViewBag.DatosCesta = procesarCompraRepositorio.listarPedidos(Id);
+                ViewBag.DatosCesta = _dbEntities.detallePedidos
+                        .Include(o => o.Producto)
+                        .Include(o => o.Pedido)
+                        .Include(o => o.Pedido.EstadoFK)
+                        .Where(o => o.Pedido.IdUsuario == Id && o.Pedido.Estado == 1).ToList();
 
                 ViewBag.Monto = obtenerMonto(Id);
 
-                ViewBag.Direcciones = procesarCompraRepositorio.obtenerDirecciones(Id);
+                ViewBag.Direcciones = _dbEntities.direcciones
+                        .Where(o => o.IdUsuario == Id);
                 ModelState.AddModelError("Direccion", "Elija una dirección");
                 return View("Cesta", "ProcesarCompra");
             }
             ViewBag.nroTracking = Comprar(IdDireccion);
             return View();
         }
-
         private string Comprar(int IdDireccion)
         {
             int Id = GetLoggedUser().Id;
             List<Pedido> pedidos = new List<Pedido>();
-            pedidos = procesarCompraRepositorio.listarPedidosActualizar(Id);
+            pedidos = _dbEntities.pedidos.Where(o => o.IdUsuario == Id && o.Estado == 1).ToList();
             int IdBoleta = generarNroBoleta(IdDireccion);
             string codTracking = generarCodTracking(Id);
             for (int i = 0; i < pedidos.Count; i++)
@@ -169,14 +173,14 @@ namespace Maxdel.Controllers
                 pedidos[i].CodTracking = codTracking;
                 pedidos[i].IdBoleta = IdBoleta;
             }
-            procesarCompraRepositorio.comprar();
+            _dbEntities.SaveChanges();
             return codTracking;
         }
         private int generarNroBoleta(int IdDireccion)
         {
             string nroBoleta = "001-";
             int aux2;
-            int nroTemp = procesarCompraRepositorio.contarBoletas();
+            int nroTemp = _dbEntities.boletas.Count();
             nroTemp++;
             string aux = nroTemp.ToString();
             nroTemp = aux.Length;
@@ -186,25 +190,25 @@ namespace Maxdel.Controllers
                 nroBoleta += "0";
             }
             nroBoleta += aux;
-
             DateTime fecha = DateTime.Now;
-
             int Id = GetLoggedUser().Id;
-            
+            var montos = _dbEntities.pedidos.Where(o => o.IdUsuario == Id && o.Estado == 1).ToList();
+            decimal monto = 0;
+            foreach (var item in montos)
+            {
+                monto += (decimal)item.Monto;
+            }
             Boleta boleta = new Boleta();
             boleta.Fecha = fecha;
             boleta.NroBoleta = nroBoleta;
-            boleta.MontoTotal = obtenerMonto(Id);
-            var direccion = procesarCompraRepositorio.obtenerDireccion(IdDireccion);
+            boleta.MontoTotal = monto;
+            var direccion = _dbEntities.direcciones.First(o => o.Id == IdDireccion);
             boleta.Direccion = direccion.Direccion;
             boleta.Referencia = direccion.Referencia;
             boleta.IdUsuario = GetLoggedUser().Id;
-
             _dbEntities.boletas.Add(boleta);
             _dbEntities.SaveChanges();
-
-            aux2 = procesarCompraRepositorio.guardarBoleta(boleta);
-
+            aux2 = _dbEntities.boletas.OrderBy(o => o.Id).Last().Id;
             return aux2;
         }
     }

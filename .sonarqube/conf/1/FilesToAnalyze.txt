@@ -1,4 +1,17 @@
-﻿D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\HomeControllerTest.cs
+﻿D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\AuthControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\ExcepcionControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\HomeAdminControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\HomeControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\MenuControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\PedidosControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\PersonaControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\ProcesarControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\ProductosControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\RegisterAdminControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\TrackingControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\VenderControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Controllers\VentasControllerTest.cs
+D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Helpers\MockDBSet.cs
 D:\ALGORITMOS\source\repos\Web Pizzeria\MaxdelTest\Usings.cs
 C:\Users\kevin\.nuget\packages\microsoft.net.test.sdk\17.1.0\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.Program.cs
 C:\Users\kevin\.nuget\packages\microsoft.testplatform.testhost\17.1.0\build\netcoreapp2.1\x64\testhost.exe

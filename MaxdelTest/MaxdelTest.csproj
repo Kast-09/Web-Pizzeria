@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Maxdel\Maxdel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositorios\" />
+  </ItemGroup>
+
 </Project>
